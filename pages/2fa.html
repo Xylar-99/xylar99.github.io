@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enable Two-Factor Authentication</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 16px;
+        }
+
+        .method-selection {
+            margin-bottom: 30px;
+        }
+
+        .method-option {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .method-option:hover {
+            border-color: #667eea;
+            background: #f8faff;
+        }
+
+        .method-option.selected {
+            border-color: #667eea;
+            background: #f8faff;
+        }
+
+        .method-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .email-icon {
+            background: #667eea;
+            color: white;
+        }
+
+        .app-icon {
+            background: #48bb78;
+            color: white;
+        }
+
+        .method-info h3 {
+            color: #2d3748;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .method-info p {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .verification-section {
+            display: none;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .verification-section.active {
+            display: block;
+        }
+
+        .email-verification {
+            text-align: center;
+        }
+
+        .email-display {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 16px;
+            color: #2d3748;
+        }
+
+        .qr-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .qr-code {
+            background: #f7fafc;
+            border: 2px dashed #cbd5e0;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .manual-entry {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .manual-entry p {
+            font-size: 14px;
+            color: #718096;
+            margin-bottom: 10px;
+        }
+
+        .secret-key {
+            font-family: monospace;
+            font-size: 14px;
+            color: #2d3748;
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            word-break: break-all;
+        }
+
+        .code-input {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .code-digit {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .code-digit:focus {
+            border-color: #667eea;
+        }
+
+        .code-digit:not(:placeholder-shown) {
+            border-color: #48bb78;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .success-message {
+            background: #c6f6d5;
+            color: #2f855a;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #667eea;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        .back-btn.show {
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .code-digit {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .qr-placeholder {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="back-btn" onclick="goBack()">← Back to method selection</button>
+        
+        <div class="header">
+            <h1>Enable Two-Factor Authentication</h1>
+            <p>Add an extra layer of security to your account</p>
+        </div>
+
+        <div class="method-selection" id="methodSelection">
+            <div class="method-option" onclick="selectMethod('email')">
+                <div class="method-icon email-icon">✉</div>
+                <div class="method-info">
+                    <h3>Email Verification</h3>
+                    <p>Receive verification codes via email</p>
+                </div>
+            </div>
+
+            <div class="method-option" onclick="selectMethod('app')">
+                <div class="method-icon app-icon">📱</div>
+                <div class="method-info">
+                    <h3>Authenticator App</h3>
+                    <p>Use Google Authenticator, Authy, or similar apps</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="verification-section" id="emailVerification">
+            <h3>Email Verification Setup</h3>
+            <p>We'll send verification codes to your registered email address:</p>
+            <div class="email-display" id="userEmail">user@example.com</div>
+            <button class="btn" onclick="sendEmailCode()">Send Verification Code</button>
+            
+            <div id="emailCodeSection" style="display: none;">
+                <p style="margin: 20px 0; text-align: center; color: #718096;">Enter the 6-digit code sent to your email:</p>
+                <div class="code-input">
+                    <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 0)">
+                    <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 1)">
+                    <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 2)">
+                    <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 3)">
+                    <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 4)">
+                    <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 5)">
+                </div>
+                <button class="btn" onclick="verifyEmailCode()">Verify Code</button>
+                <button class="btn btn-secondary" onclick="sendEmailCode()" style="margin-top: 10px;">Resend Code</button>
+            </div>
+        </div>
+
+        <div class="verification-section" id="appVerification">
+            <h3>Authenticator App Setup</h3>
+            <p>Scan the QR code below with your authenticator app:</p>
+            
+            <div class="qr-section">
+                <div class="qr-code">
+                    <img src="#" class="qr-placeholder">
+                        QR Code will appear here
+                    </img>
+                </div>
+            </div>
+
+            <div class="manual-entry">
+                <p>Can't scan? Enter this code manually:</p>
+                <div class="secret-key" id="secretKey">JBSWY3DPEHPK3PXP</div>
+            </div>
+
+            <p style="margin: 20px 0; text-align: center; color: #718096;">Enter the 6-digit code from your authenticator app:</p>
+            <div class="code-input">
+                <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 0)">
+                <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 1)">
+                <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 2)">
+                <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 3)">
+                <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 4)">
+                <input type="text" class="code-digit" maxlength="1" oninput="handleCodeInput(this, 5)">
+            </div>
+            <button class="btn" onclick="verifyAppCode()">Verify & Enable 2FA</button>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            2FA has been successfully enabled for your account!
+        </div>
+
+        <div class="error-message" id="errorMessage">
+            Invalid code. Please try again.
+        </div>
+    </div>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:4000/ws');
+
+        let selectedMethod = '';
+        let emailCodeSent = false;
+
+       async function selectMethod(method)
+       {
+            selectedMethod = method;
+            
+            // Hide method selection
+            document.getElementById('methodSelection').style.display = 'none';
+            
+            // Show back button
+            document.querySelector('.back-btn').classList.add('show');
+            
+            // Show appropriate verification section
+            if (method === 'email') {
+                document.getElementById('emailVerification').classList.add('active');
+                // Set user email (this would come from your backend)
+                document.getElementById('userEmail').textContent = 'user@example.com';
+            } else if (method === 'app') {
+                document.getElementById('appVerification').classList.add('active');
+               await generateQRCode();
+            }
+        }
+
+        function goBack() {
+            // Hide all verification sections
+            document.querySelectorAll('.verification-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show method selection
+            document.getElementById('methodSelection').style.display = 'block';
+            
+            // Hide back button
+            document.querySelector('.back-btn').classList.remove('show');
+            
+            // Reset state
+            selectedMethod = '';
+            emailCodeSent = false;
+            document.getElementById('emailCodeSection').style.display = 'none';
+            hideMessages();
+        }
+
+        function sendEmailCode() 
+        {
+            // Simulate sending email code
+            document.getElementById('emailCodeSection').style.display = 'block';
+            emailCodeSent = true;
+
+
+            
+            const data = { type: "email" , email: "abdoqoubai@gmail.com"};
+            ws.send(JSON.stringify(data));
+
+            // In real implementation, make API call to send email
+
+            console.log('Sending email code to:', document.getElementById('userEmail').textContent);
+        }
+
+        async function generateQRCode() 
+        {
+            
+            const url = await fetch('http://backend.abquaoub.me:4000/api/2fa/authenticator/setup')
+            const data = await url.json();
+            // In real implementation, generate actual QR code
+            document.getElementById('secretKey').textContent = data.key;
+            
+            // You would generate actual QR code here
+            document.querySelector('.qr-placeholder').src = data.url
+            
+            
+        }
+
+        function generateSecretKey() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+            let result = '';
+            for (let i = 0; i < 16; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        function handleCodeInput(input, index) {
+            // Only allow numbers
+            input.value = input.value.replace(/[^0-9]/g, '');
+            
+            // Move to next input if current is filled
+            if (input.value.length === 1) {
+                const nextInput = input.parentElement.children[index + 1];
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+            
+            // Move to previous input on backspace
+            if (input.value.length === 0 && index > 0) {
+                const prevInput = input.parentElement.children[index - 1];
+                if (prevInput) {
+                    prevInput.focus();
+                }
+            }
+        }
+
+        function getCodeFromInputs(container) {
+            const inputs = container.querySelectorAll('.code-digit');
+            return Array.from(inputs).map(input => input.value).join('');
+        }
+
+        function clearCodeInputs(container) {
+            const inputs = container.querySelectorAll('.code-digit');
+            inputs.forEach(input => {
+                input.value = '';
+            });
+            inputs[0].focus();
+        }
+
+       async function verifyEmailCode() 
+        {
+            const code = getCodeFromInputs(document.getElementById('emailVerification'));
+            
+            const res = await fetch('http://backend.abquaoub.me:4000/api/2fa/email/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code })
+                });
+
+
+            if (res.ok) 
+                showSuccess();
+            else 
+            {
+                showError('Invalid code. Please try again.');
+                clearCodeInputs(document.getElementById('emailVerification'));
+            }
+        }
+
+       async function verifyAppCode() 
+        {
+            const code = getCodeFromInputs(document.getElementById('appVerification'));
+            
+            const res = await fetch('http://backend.abquaoub.me:4000/api/2fa/authenticator/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code })
+                });
+
+
+            if (res.ok) 
+                showSuccess();
+            else 
+            {
+                showError('Invalid code. Please try again.');
+                clearCodeInputs(document.getElementById('appVerification'));
+            }
+        }
+
+        function showSuccess() {
+            hideMessages();
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Hide verification sections after success
+            setTimeout(() => {
+                document.querySelectorAll('.verification-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+            }, 2000);
+        }
+
+        function showError(message) {
+            hideMessages();
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('errorMessage').style.display = 'block';
+            
+            // Hide error after 3 seconds
+            setTimeout(hideMessages, 3000);
+        }
+
+        function hideMessages() {
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        // Auto-focus first input when verification section becomes active
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.target.classList.contains('verification-section') && 
+                        mutation.target.classList.contains('active')) {
+                        const firstInput = mutation.target.querySelector('.code-digit');
+                        if (firstInput) {
+                            setTimeout(() => firstInput.focus(), 100);
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('.verification-section').forEach(section => {
+                observer.observe(section, { attributes: true, attributeFilter: ['class'] });
+            });
+        });
+    </script>
+</body>
+</html>
