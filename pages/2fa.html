@@ -446,7 +446,7 @@
         async function generateQRCode() 
         {
             
-            const url = await fetch('http://backend.abquaoub.me:4000/api/2fa/authenticator/setup')
+            const url = await fetch('https://backend.abquaoub.me/api/2fa/authenticator/setup', {credentials: 'include',})
             const data = await url.json();
             // In real implementation, generate actual QR code
             document.getElementById('secretKey').textContent = data.key;
@@ -504,8 +504,9 @@
         {
             const code = getCodeFromInputs(document.getElementById('emailVerification'));
             
-            const res = await fetch('http://backend.abquaoub.me:4000/api/2fa/email/verify', {
+            const res = await fetch('https://backend.abquaoub.me/api/2fa/email/verify', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ code })
                 });
@@ -524,8 +525,9 @@
         {
             const code = getCodeFromInputs(document.getElementById('appVerification'));
             
-            const res = await fetch('http://backend.abquaoub.me:4000/api/2fa/authenticator/verify', {
+            const res = await fetch('https://backend.abquaoub.me/api/2fa/authenticator/verify', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ code })
                 });

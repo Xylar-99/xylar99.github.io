@@ -596,7 +596,7 @@
         // Get current user profile
         async function getUser() 
         {
-            const res = await fetch('http://backend.abquaoub.me:4000/api/users/me');
+            const res = await fetch('https://backend.abquaoub.me/api/users/me' , {credentials: 'include'});
             if (!res.ok) throw new Error('Failed to get profile');
             profile = await res.json();
         }
@@ -606,7 +606,7 @@
         {
             try 
             {
-                const res = await fetch('http://backend.abquaoub.me:4000/api/friends/');
+                const res = await fetch('https://backend.abquaoub.me/api/friends/' , {credentials: 'include',});
                 if (!res.ok) throw new Error('Failed to load friends');
                 friends = await res.json();
                 displayFriends();
@@ -619,7 +619,7 @@
         async function loadRequests() {
             try 
             {
-                res = await fetch('http://backend.abquaoub.me:4000/api/friends/pending');
+                res = await fetch('https://backend.abquaoub.me/api/friends/pending' , {credentials: 'include',});
            
                 if (!res.ok) throw new Error('Failed to load friend requests');
                 requests = await res.json();
@@ -636,7 +636,7 @@
         {
             try 
             {
-                const res = await fetch('http://backend.abquaoub.me:4000/api/friends/blocked/');
+                const res = await fetch('https://backend.abquaoub.me/api/friends/blocked/' , {credentials: 'include',});
                 if (!res.ok) throw new Error('Failed to load blocked users');
                 blockedUsers = await res.json();
                 displayBlockedUsers();
@@ -649,7 +649,7 @@
         // Load all users for friend invitations
         async function loadAllUsers() {    
             try {
-                const res = await fetch('http://backend.abquaoub.me:4000/api/users/');
+                const res = await fetch('https://backend.abquaoub.me/api/users/' , {credentials: 'include',});
                 if (!res.ok) throw new Error('Failed to load users');
                 allUsers = await res.json();
                 displayAllUsers();
@@ -853,8 +853,9 @@
                 button.disabled = true;
                 button.textContent = 'Sending...';
 
-                const res = await fetch('http://backend.abquaoub.me:4000/api/friends/request', {
+                const res = await fetch('https://backend.abquaoub.me/api/friends/request', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ friendId })
                 });
@@ -881,8 +882,9 @@
                 button.disabled = true;
                 button.textContent = 'Accepting...';
 
-                const res = await fetch('http://backend.abquaoub.me:4000/api/friends/accept', {
+                const res = await fetch('https://backend.abquaoub.me/api/friends/accept', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ requestId })
                 });
@@ -907,8 +909,9 @@
                 button.disabled = true;
                 button.textContent = 'Rejecting...';
 
-                const res = await fetch('http://backend.abquaoub.me:4000/api/friends/reject', {
+                const res = await fetch('https://backend.abquaoub.me/api/friends/reject', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
                     body: JSON.stringify({ requestId })
@@ -935,7 +938,7 @@
                 button.disabled = true;
                 button.textContent = 'Removing...';
 
-                const res = await fetch(`http://backend.abquaoub.me:4000/api/friends/${friendId}`, {method: 'DELETE'});
+                const res = await fetch(`https://backend.abquaoub.me/api/friends/${friendId}`, {method: 'DELETE' , credentials: 'include',});
 
                 if (!res.ok) throw new Error('Failed to remove friend');
                 
@@ -959,7 +962,7 @@
                 button.disabled = true;
                 button.textContent = 'Blocking...';
 
-                const res = await fetch(`http://backend.abquaoub.me:4000/api/friends/blocked/${userId}`, { method: 'POST', });
+                const res = await fetch(`https://backend.abquaoub.me/api/friends/blocked/${userId}`, { method: 'POST',credentials: 'include', });
 
                 if (!res.ok) throw new Error('Failed to block user');
                 
@@ -986,9 +989,7 @@
                 button.disabled = true;
                 button.textContent = 'Unblocking...';
 
-                const res = await fetch(`http://backend.abquaoub.me:4000/api/friends/blocked/${blockId}`, 
-                    
-                );
+                const res = await fetch(`https://backend.abquaoub.me/api/friends/blocked/${blockId}`,  {credentials: 'include',});
 
                 if (!res.ok) throw new Error('Failed to unblock user');
                 
