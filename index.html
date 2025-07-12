@@ -252,7 +252,20 @@
         </div>
     </div>
 
-    <script>
+
+
+<script>
+
+        const res = await fetch('https://backend.abquaoub.me', { method: 'GET', credentials: 'include', });
+
+
+        if (res.ok)
+            alert(true)
+        else 
+            alert(false)
+        
+
+            
         function handleLogin() 
         {
             window.location.href = "./pages/login.html";
