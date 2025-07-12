@@ -389,13 +389,17 @@
           credentials: 'include',
           body: JSON.stringify({ email, password })
         });
+        
+        if (res.ok) 
+        {
 
-        if (res.ok) {
           showSuccess('Login successful! Redirecting...');
           setTimeout(() => {
-            window.location.href = '/profile';
+            window.location.href = '/pages/2faEnable.html';
           }, 1000);
-        } else {
+        } 
+        else 
+        {
           const errorData = await res.json();
           showError(errorData.message || 'Login failed. Please check your credentials.');
         }

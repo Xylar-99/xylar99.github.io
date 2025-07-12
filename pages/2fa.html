@@ -446,12 +446,10 @@
         async function generateQRCode() 
         {
             
-            const url = await fetch('https://backend.abquaoub.me/api/2fa/authenticator/setup', {credentials: 'include',})
+            const url = await fetch('https://backend.abquaoub.me/api/2fa/setup', {credentials: 'include',})
             const data = await url.json();
-            // In real implementation, generate actual QR code
             document.getElementById('secretKey').textContent = data.key;
             
-            // You would generate actual QR code here
             document.querySelector('.qr-placeholder').src = data.url
             
             
@@ -525,7 +523,7 @@
         {
             const code = getCodeFromInputs(document.getElementById('appVerification'));
             
-            const res = await fetch('https://backend.abquaoub.me/api/2fa/authenticator/verify', {
+            const res = await fetch('https://backend.abquaoub.me/api/2fa/enable', {
                     method: 'POST',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
@@ -534,7 +532,12 @@
 
 
             if (res.ok) 
-                showSuccess();
+            {
+            showSuccess('Login successful! Redirecting...');
+            setTimeout(() => {
+            window.location.href = '/pages/profile.html';
+          }, 1000);
+            }
             else 
             {
                 showError('Invalid code. Please try again.');
