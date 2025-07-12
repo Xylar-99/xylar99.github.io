@@ -256,16 +256,17 @@
 
 <script>
 
+    async function testing() 
+    {
         const res = await fetch('https://backend.abquaoub.me', { method: 'GET', credentials: 'include', });
-
-
         if (res.ok)
             alert(true)
         else 
             alert(false)
-        
+    }
 
-            
+    testing();
+    
         function handleLogin() 
         {
             window.location.href = "./pages/login.html";
