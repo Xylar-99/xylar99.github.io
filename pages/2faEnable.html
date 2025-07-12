@@ -320,17 +320,16 @@
                 
                 const data = await response.json();
                 
-                if (response.ok && data.success) {
+                if (response.ok) 
+                {
                     showSuccess('Code verified successfully! ✓');
-                    verifyBtn.textContent = 'Verified';
-                    verifyBtn.style.background = '#27ae60';
-                    
-                    // Redirect or perform success action after 1 second
-                    setTimeout(() => {
-                        // You can redirect to dashboard or next page here
-                        // window.location.href = '/dashboard';
+                    let href = '/pages/login.html'
+                    setTimeout (() => {
+                      window.location.href = href;
                     }, 1000);
-                } else {
+                } 
+                else 
+                {
                     showError(data.message || 'Invalid code. Please try again.');
                     verifyBtn.textContent = 'Verify Code';
                     verifyBtn.style.opacity = '1';
