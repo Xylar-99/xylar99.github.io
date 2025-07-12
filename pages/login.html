@@ -394,9 +394,13 @@
         {
           let href = '/pages/profile.html'
           const data = await res.json();
-          if(data.two2fa)
-            href = '/pages/2faEnable.html'
+          if(data.two2fa == true)
+        {
+          alert(true)
+          href = '/pages/2faEnable.html'
+        }
           
+            alert(href)
           setTimeout (() => {
             window.location.href = href;
           }, 1000);
