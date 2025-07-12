@@ -392,10 +392,13 @@
         
         if (res.ok) 
         {
-
-          showSuccess('Login successful! Redirecting...');
-          setTimeout(() => {
-            window.location.href = '/pages/2faEnable.html';
+          let href = '/pages/profile.html'
+          const data = await res.json();
+          if(data.twofa)
+            href = '/pages/2faEnable.html'
+          
+          setTimeout (() => {
+            window.location.href = href;
           }, 1000);
         } 
         else 
