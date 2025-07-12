@@ -270,7 +270,7 @@
         async function loadProfile() {
             try 
             {
-                const res = await fetch('https://backend.abquaoub.me:4000/api/users/me' , {method : "GET" , credentials: 'include',});
+                const res = await fetch('https://backend.abquaoub.me/api/users/me' , {method : "GET" , credentials: 'include',});
                 if (!res.ok) throw new Error('Failed to get profile');
                 const user = await res.json();
                 document.getElementById('username').textContent = user.username || 'Unknown';
