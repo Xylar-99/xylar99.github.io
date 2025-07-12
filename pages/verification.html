@@ -368,8 +368,9 @@
       }
 
       try {
-        const res = await fetch('http://backend.abquaoub.me:4000/api/resend-verification', {
+        const res = await fetch('https://backend.abquaoub.me/api/resend-verification', {
           method: 'POST',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json'
           },
