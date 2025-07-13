@@ -309,8 +309,7 @@
             
             try 
             {
-
-
+                
                 const res = await fetch('https://backend.abquaoub.me/api/2fa/verify', {
                     method: 'POST',
                     credentials: 'include',
@@ -318,6 +317,7 @@
                     body: JSON.stringify({ code })
                 });
                 // const data = await res.json();
+                console.log(code , res.ok)
                 if (res.ok) 
                 {
                     showSuccess('Code verified successfully! ✓');
