@@ -395,7 +395,14 @@
           let href = '/pages/profile.html'
           const data = await res.json();
           if(data.two2fa == true)
+          {
             href = '/pages/2faEnable.html'
+            sessionStorage.setItem('temp_token', data.tmp);
+
+            // In another HTML/JS file:
+            // const tempToken = sessionStorage.getItem('temp_token');
+
+          }
           setTimeout (() => {
             window.location.href = href;
           }, 1000);
