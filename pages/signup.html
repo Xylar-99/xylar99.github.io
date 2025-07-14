@@ -390,7 +390,7 @@
 
     async function OauthGoogle() 
     {
-      await fetch('https://backend.abquaoub.me/api/signup/google');
+      fetch('https://backend.abquaoub.me/api/signup/google');
       const data = await fetch('https://backend.abquaoub.me/auth/google/callback');
 
       if(data.ok)
@@ -401,7 +401,7 @@
       }, 500);
     }
     else
-      showSuccess('errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
+      showSuccess('err');
 
     }
 
