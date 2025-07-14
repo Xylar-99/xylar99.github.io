@@ -388,38 +388,7 @@
     generateCaptcha();
 
 
-    async function OauthGoogle() 
-    {
-      fetch('https://backend.abquaoub.me/api/signup/google');
-      const data = await fetch('https://backend.abquaoub.me/auth/google/callback');
-
-      if(data.ok)
-      {
-      showSuccess('Account created successfully! Redirecting to verification...');
-      setTimeout(() => {
-        window.location.href = '/pages/profile.html';
-      }, 500);
-    }
-    else
-      showSuccess('err');
-
-    }
-
-    async function OauthIntra() 
-    {
-      const data = await fetch('https://backend.abquaoub.me/api/intra');
-
-      if(data.ok)
-      {
-      showSuccess('Account created successfully! Redirecting to verification...');
-      setTimeout(() => {
-        window.location.href = '/pages/profile.html';
-      }, 500);
-    }
-    else
-      showSuccess('errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr');
-
-    }
+   
 
     document.getElementById('signupForm').addEventListener('submit', signup);
 
