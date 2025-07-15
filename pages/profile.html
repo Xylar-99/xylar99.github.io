@@ -1827,6 +1827,7 @@
       
       try {
         // Prepare form data
+        throw new Error("hhhhhhhhhhhhhhhh")
         const formData = new FormData();
         formData.append('fname', document.getElementById('editFirstName').value);
         formData.append('lname', document.getElementById('editLastName').value);
@@ -1839,6 +1840,7 @@
         if (avatarFile) {
           formData.append('avatar', avatarFile);
         }
+
 
         // alert(formData.fname);
         // alert(formData.avatar);
