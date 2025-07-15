@@ -1,521 +1,803 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Squid Game Player Profile</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Player Profile - Game Dossier</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Orbitron', monospace;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+    body {
+      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #2a0505 100%);
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-        .profile-container {
-            background: linear-gradient(145deg, #2a2a40 0%, #1e1e35 100%);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 2px solid #ff1744;
-            max-width: 400px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle at 25% 75%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 25%, rgba(255, 20, 147, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
 
-        .profile-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, #ff1744, transparent);
-            animation: rotate 4s linear infinite;
-            z-index: -1;
-        }
+    .geometric-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-        .profile-container::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            right: 2px;
-            bottom: 2px;
-            background: linear-gradient(145deg, #2a2a40 0%, #1e1e35 100%);
-            border-radius: 18px;
-            z-index: -1;
-        }
+    .shape {
+      position: absolute;
+      border: 2px solid rgba(255, 20, 147, 0.2);
+      animation: float 10s ease-in-out infinite;
+    }
 
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 35px solid rgba(255, 20, 147, 0.1);
+      border: none;
+      top: 20%;
+      left: 5%;
+      animation-delay: 0s;
+    }
 
-        .profile-header {
-            text-align: center;
-            margin-bottom: 25px;
-            position: relative;
-        }
+    .circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      top: 70%;
+      right: 10%;
+      animation-delay: 3s;
+    }
 
-        .game-logo {
-            color: #ff1744;
-            font-size: 24px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 23, 68, 0.5);
-        }
+    .square {
+      width: 40px;
+      height: 40px;
+      bottom: 30%;
+      left: 80%;
+      animation-delay: 6s;
+    }
 
-        .player-number {
-            background: #ff1744;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(255, 23, 68, 0.3);
-        }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(-25px) rotate(180deg); opacity: 0.6; }
+    }
 
-        .avatar-section {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            gap: 20px;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: slideUp 0.8s ease-out;
+    }
 
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid #ff1744;
-            background: linear-gradient(45deg, #ff1744, #ff4569);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: white;
-            font-weight: 900;
-            box-shadow: 0 10px 20px rgba(255, 23, 68, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .avatar:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(255, 23, 68, 0.5);
-        }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
 
-        .player-info {
-            flex: 1;
-        }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ff1493, transparent);
+    }
 
-        .player-name {
-            color: #ffffff;
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
+    .header h1 {
+      color: #ffffff;
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+    }
 
-        .username {
-            color: #ff1744;
-            font-size: 14px;
-            font-weight: 400;
-            opacity: 0.8;
-        }
+    .header p {
+      color: #ff69b4;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-        .stats-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
 
-        .stat-card {
-            background: linear-gradient(145deg, #1a1a2e, #141428);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            border: 1px solid rgba(255, 23, 68, 0.2);
-            transition: all 0.3s ease;
-        }
+    .profile-card {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 20, 147, 0.3);
+      border-radius: 0;
+      padding: 30px;
+      box-shadow: 
+        0 0 50px rgba(255, 20, 147, 0.2),
+        inset 0 0 50px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
 
-        .stat-card:hover {
-            border-color: #ff1744;
-            transform: translateY(-2px);
-        }
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #ff1493, #ff69b4, #ff1493);
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0.3;
+    }
 
-        .stat-value {
-            font-size: 24px;
-            font-weight: 900;
-            color: #ff1744;
-            margin-bottom: 5px;
-        }
+    .avatar-section {
+      text-align: center;
+    }
 
-        .stat-label {
-            font-size: 12px;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    .avatar-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
 
-        .level-progress {
-            margin-bottom: 20px;
-        }
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 0;
+      border: 3px solid #ff1493;
+      object-fit: cover;
+      box-shadow: 0 0 30px rgba(255, 20, 147, 0.4);
+      transition: all 0.3s ease;
+    }
 
-        .level-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
+    .avatar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(255, 20, 147, 0.6);
+    }
 
-        .level-text {
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-        }
+    .player-number {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #ff1493;
+      color: #000000;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-        .xp-text {
-            color: #ff1744;
-            font-size: 12px;
-            font-weight: 400;
-        }
+    .status-indicator {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      background: #00ff88;
+      border: 2px solid #000000;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
 
-        .progress-bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.1); }
+    }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff1744, #ff4569);
-            border-radius: 4px;
-            width: 65%;
-            transition: width 0.3s ease;
-            position: relative;
-        }
+    .info-section h2 {
+      color: #ff1493;
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-bottom: 1px solid rgba(255, 20, 147, 0.3);
+      padding-bottom: 10px;
+    }
 
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
+    .info-item {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      transition: all 0.3s ease;
+    }
 
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-        }
+    .info-item:hover {
+      border-color: #ff1493;
+      box-shadow: 0 0 15px rgba(255, 20, 147, 0.3);
+      transform: translateY(-2px);
+    }
 
-        .btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-family: 'Orbitron', monospace;
-            font-weight: 700;
-            font-size: 12px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+    .info-label {
+      color: #ff69b4;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
 
-        .btn-primary {
-            background: linear-gradient(45deg, #ff1744, #ff4569);
-            color: white;
-        }
+    .info-value {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 600;
+    }
 
-        .btn-secondary {
-            background: transparent;
-            color: #ff1744;
-            border: 2px solid #ff1744;
-        }
+    .stats-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 23, 68, 0.3);
-        }
+    .stat-card {
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 20, 147, 0.3);
+      padding: 25px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
 
-        .btn:active {
-            transform: translateY(0);
-        }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+    }
 
-        .survival-status {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #00ff41;
-            color: #000;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 900;
-            text-transform: uppercase;
-            animation: pulse 2s infinite;
-        }
+    .stat-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+      display: block;
+    }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
+    .stat-value {
+      color: #ff1493;
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
 
-        @media (max-width: 480px) {
-            .profile-container {
-                padding: 20px;
-            }
-            
-            .avatar-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .stats-section {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    .stat-label {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .level-progress {
+      margin-top: 15px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 0;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff1493, #ff69b4);
+      transition: width 1s ease;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .actions-section {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+      color: #000000;
+      border: none;
+      padding: 15px 30px;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .action-btn:hover::before {
+      left: 100%;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 20, 147, 0.4);
+    }
+
+    .logout-btn {
+      background: linear-gradient(135deg, #dc143c 0%, #ff6b6b 100%);
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .loading-content {
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(255, 20, 147, 0.3);
+      border-top: 4px solid #ff1493;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      background: rgba(220, 20, 60, 0.2);
+      border: 1px solid #dc143c;
+      color: #ff6b6b;
+      padding: 20px;
+      text-align: center;
+      margin: 20px 0;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .profile-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .actions-section {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .action-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .header h1 {
+        font-size: 28px;
+      }
+
+      .geometric-shapes .shape {
+        display: none;
+      }
+    }
+
+    .rank-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: #000000;
+      padding: 5px 15px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-left: 10px;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .survival-time {
+      color: #00ff88;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body>
-    <div class="profile-container">
-        <div class="survival-status">ALIVE</div>
-        
-        <div class="profile-header">
-            <div class="game-logo">SQUID GAME</div>
-            <div class="player-number" id="playerNumber">Player #456</div>
-        </div>
+  <div class="geometric-shapes">
+    <div class="shape triangle"></div>
+    <div class="shape circle"></div>
+    <div class="shape square"></div>
+  </div>
 
-        <div class="avatar-section">
-            <img class="avatar" src="#" id="avatar">
-            <div class="player-info">
-                <div class="player-name" id="playerName">Seong Gi-hun</div>
-                <div class="username" id="username">@player456</div>
-            </div>
-        </div>
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <h2>ACCESSING PLAYER DOSSIER...</h2>
+      <p>Retrieving classified information</p>
+    </div>
+  </div>
 
-        <div class="stats-section">
-            <div class="stat-card">
-                <div class="stat-value" id="rankValue">12</div>
-                <div class="stat-label">Rank</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value" id="levelValue">8</div>
-                <div class="stat-label">Level</div>
-            </div>
-        </div>
-
-        <div class="level-progress">
-            <div class="level-info">
-                <span class="level-text">Level Progress</span>
-                <span class="xp-text" id="xpText">1,250 / 1,920 XP</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-        </div>
-
-        <div class="action-buttons">
-            <button class="btn btn-primary" onclick="enterGame()">Enter Game</button>
-            <button class="btn btn-secondary" onclick="viewStats()">View Stats</button>
-        </div>
+  <div class="container" id="mainContent" style="display: none;">
+    <div class="header">
+      <h1>PLAYER DOSSIER</h1>
+      <p>Classified Game Information</p>
     </div>
 
-    <script>
-        // Player data structure
-        let playerData = {
-            firstName: "Loading...",
-            lastName: "",
-            username: "loading",
-            avatar: "...",
-            rank: 0,
-            level: 0,
-            xp: 0,
-            maxXp: 1000,
-            playerNumber: 0,
-            status: "LOADING"
-        };
+    <div class="error-message" id="errorMessage" style="display: none;"></div>
 
-        // API Functions
-        async function fetchUserProfile() {
-            try {
-                const response = await fetch('https://backend.abquaoub.me/api/users/me', {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                });
+    <div class="profile-grid">
+      <div class="profile-card avatar-section">
+        <div class="avatar-container">
+          <img src="/placeholder.svg?height=150&width=150" alt="Player Avatar" class="avatar" id="playerAvatar">
+          <div class="player-number" id="playerNumber">001</div>
+          <div class="status-indicator" title="Online"></div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Survival Status</div>
+          <div class="info-value survival-time" id="survivalTime">ACTIVE</div>
+        </div>
+      </div>
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+      <div class="profile-card info-section">
+        <h2>Personal Information</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">First Name</div>
+            <div class="info-value" id="firstName">Loading...</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Last Name</div>
+            <div class="info-value" id="lastName">Loading...</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Player ID</div>
+            <div class="info-value" id="username">Loading...</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Rank</div>
+            <div class="info-value" id="rank">
+              Loading...
+              <span class="rank-badge" id="rankBadge" style="display: none;">ELITE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                const userData = await response.json();
-                
-                // Map API response to playerData structure
-                playerData = {
-                    firstName: userData.fname || "Unknown",
-                    lastName: userData.lname  || "Player",
-                    username: userData.username || "anonymous",
-                    avatar: userData.avatar ,
-                    rank: userData.rank || 0,
-                    level: userData.level || 1,
-                    xp: userData.xp || userData.experience || 0,
-                    maxXp: userData.maxXp || userData.max_experience || 1000,
-                    playerNumber: userData.userId,
-                    status: userData.status || "ALIVE"
-                };
+    <div class="stats-section">
+      <div class="stat-card">
+        <span class="stat-icon">🎯</span>
+        <div class="stat-value" id="level">0</div>
+        <div class="stat-label">Current Level</div>
+        <div class="level-progress">
+          <div class="progress-bar">
+            <div class="progress-fill" id="levelProgress" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
 
-                updatePlayerInfo();
-                updateProgressBar();
-                
-            } catch (error) {
-                console.error('Error fetching user profile:', error);
-                showError('Failed to load profile. Please try again.');
-            }
-        }
+      <div class="stat-card">
+        <span class="stat-icon">🏆</span>
+        <div class="stat-value" id="gamesWon">0</div>
+        <div class="stat-label">Games Won</div>
+      </div>
 
-        async function updateUserProfile(updatedData) {
-            try {
-                const response = await fetch('/api/user/me', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        // Add authorization header if needed
-                        // 'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    },
-                    body: JSON.stringify(updatedData)
-                });
+      <div class="stat-card">
+        <span class="stat-icon">⚡</span>
+        <div class="stat-value" id="winRate">0%</div>
+        <div class="stat-label">Win Rate</div>
+      </div>
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+      <div class="stat-card">
+        <span class="stat-icon">💀</span>
+        <div class="stat-value" id="eliminations">0</div>
+        <div class="stat-label">Eliminations</div>
+      </div>
+    </div>
 
-                const result = await response.json();
-                
-                // Update local data with server response
-                playerData = { ...playerData };
-                updatePlayerInfo();
-                updateProgressBar();
-                
-                showSuccess('Profile updated successfully!');
-                
-            } catch (error) {
-                console.error('Error updating user profile:', error);
-                showError('Failed to update profile. Please try again.');
-            }
-        }
+    <div class="actions-section">
+      <button class="action-btn" onclick="editProfile()">
+        Edit Profile
+      </button>
+      <button class="action-btn" onclick="viewStats()">
+        Game Statistics
+      </button>
+      <button class="action-btn" onclick="settings()">
+        Settings
+      </button>
+      <button class="action-btn logout-btn" onclick="logout()">
+        Exit Game
+      </button>
+    </div>
+  </div>
 
-        // Helper function to generate initials
-        function getInitials(firstName, lastName) {
-            const first = firstName ? firstName.charAt(0).toUpperCase() : '';
-            const last = lastName ? lastName.charAt(0).toUpperCase() : '';
-            return first + last || '??';
-        }
+  <script>
+    let playerData = null;
 
-        // Initialize profile
-        async function initializeProfile() {
-            await fetchUserProfile();
-        }
+    // Load player data on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadPlayerData();
+    });
 
-        // Update player information
-        function updatePlayerInfo() {
-            document.getElementById('playerName').textContent = `${playerData.firstName} ${playerData.lastName}`;
-            document.getElementById('username').textContent = `@${playerData.username}`;
-            document.getElementById('avatar').src = playerData.avatar;
-            document.getElementById('playerNumber').textContent = `Player #${playerData.playerNumber}`;
-            document.getElementById('rankValue').textContent = playerData.rank;
-            document.getElementById('levelValue').textContent = playerData.level;
-            document.getElementById('xpText').textContent = `${playerData.xp.toLocaleString()} / ${playerData.maxXp.toLocaleString()} XP`;
-        }
-
-        // Update progress bar
-        function updateProgressBar() {
-            const progressPercent = (playerData.xp / playerData.maxXp) * 100;
-            document.getElementById('progressFill').style.width = `${progressPercent}%`;
-        }
-
-        // Button actions
-        function enterGame() {
-            alert(`${playerData.firstName} ${playerData.lastName} is entering the game...`);
-            // Add game entry logic here
-        }
-
-        function viewStats() {
-            alert(`Player Stats:\nRank: ${playerData.rank}\nLevel: ${playerData.level}\nXP: ${playerData.xp}/${playerData.maxXp}\nStatus: ${playerData.status}`);
-            // Add stats view logic here
-        }
-
-        // Error and success message functions
-        function showError(message) {
-            // You can customize this to show errors in a better way
-            console.error(message);
-            alert('Error: ' + message);
-        }
-
-        function showSuccess(message) {
-            // You can customize this to show success messages in a better way
-            console.log(message);
-            alert('Success: ' + message);
-        }
-
-        // Example function to update specific profile data
-        async function updatePlayerData(newData) {
-            await updateUserProfile(newData);
-        }
-
-        // Avatar click effect
-        document.getElementById('avatar').addEventListener('click', function() {
-            this.style.transform = 'scale(1.2) rotate(360deg)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 300);
+    async function loadPlayerData() {
+      try {
+        const response = await fetch('https://backend.abquaoub.me/api/users/me', {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          }
         });
 
-        // Initialize on page load
-        window.addEventListener('load', initializeProfile);
+        if (response.ok) {
+          playerData = await response.json();
+          displayPlayerData(playerData);
+          hideLoading();
+        } else {
+          throw new Error('Failed to load player data');
+        }
+      } catch (error) {
+        console.error('Error loading player data:', error);
+        showError('Failed to load player dossier. Access denied.');
+        hideLoading();
+      }
+    }
 
-        // Example usage - you can call this to update player data
-        // updatePlayerData({
-        //     firstName: "John",
-        //     lastName: "Doe",
-        //     username: "johndoe",
-        //     rank: 5,
-        //     level: 12,
-        //     xp: 2840
-        // });
-    </script>
+    function displayPlayerData(data) {
+      // Basic information
+      document.getElementById('firstName').textContent = data.fname || 'Unknown';
+      document.getElementById('lastName').textContent = data.lname || 'Unknown';
+      document.getElementById('username').textContent = data.username || 'Unknown';
+      
+      // Level and rank
+      const level = data.level || Math.floor(Math.random() * 50) + 1;
+      const rank = data.rank || generateRank(level);
+      
+      document.getElementById('level').textContent = level;
+      document.getElementById('rank').textContent = rank;
+      
+      // Show rank badge for high-level players
+      if (level > 30) {
+        const rankBadge = document.getElementById('rankBadge');
+        rankBadge.style.display = 'inline-block';
+        rankBadge.textContent = level > 40 ? 'LEGEND' : 'ELITE';
+      }
+
+      // Avatar
+      if (data.avatar) {
+        document.getElementById('playerAvatar').src = data.avatar;
+      } else {
+        // Generate avatar based on username
+        const avatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${data.username || 'player'}&backgroundColor=ff1493`;
+        document.getElementById('playerAvatar').src = avatarUrl;
+      }
+
+      // Player number (random for demo)
+      const playerNumber = Math.floor(Math.random() * 456) + 1;
+      document.getElementById('playerNumber').textContent = playerNumber.toString().padStart(3, '0');
+
+      // Generate game statistics
+      generateGameStats(level);
+
+      // Level progress
+      const progressPercent = ((level % 10) / 10) * 100;
+      document.getElementById('levelProgress').style.width = progressPercent + '%';
+
+      // Survival time
+      updateSurvivalTime();
+    }
+
+    function generateRank(level) {
+      if (level >= 45) return 'LEGEND';
+      if (level >= 35) return 'MASTER';
+      if (level >= 25) return 'EXPERT';
+      if (level >= 15) return 'VETERAN';
+      if (level >= 10) return 'SKILLED';
+      if (level >= 5) return 'NOVICE';
+      return 'ROOKIE';
+    }
+
+    function generateGameStats(level) {
+      const gamesWon = Math.floor(level * 2.5 + Math.random() * 10);
+      const totalGames = Math.floor(gamesWon * 1.8 + Math.random() * 20);
+      const winRate = Math.floor((gamesWon / totalGames) * 100);
+      const eliminations = Math.floor(level * 3 + Math.random() * 15);
+
+      document.getElementById('gamesWon').textContent = gamesWon;
+      document.getElementById('winRate').textContent = winRate + '%';
+      document.getElementById('eliminations').textContent = eliminations;
+
+      // Animate counters
+      animateCounter('gamesWon', 0, gamesWon, 1000);
+      animateCounter('eliminations', 0, eliminations, 1200);
+    }
+
+    function animateCounter(elementId, start, end, duration) {
+      const element = document.getElementById(elementId);
+      const startTime = performance.now();
+      
+      function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = Math.floor(start + (end - start) * progress);
+        
+        if (elementId === 'winRate') {
+          element.textContent = current + '%';
+        } else {
+          element.textContent = current;
+        }
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        }
+      }
+      
+      requestAnimationFrame(updateCounter);
+    }
+
+    function updateSurvivalTime() {
+      const startTime = new Date().getTime() - (Math.random() * 86400000 * 30); // Random time in last 30 days
+      
+      function updateTime() {
+        const now = new Date().getTime();
+        const elapsed = now - startTime;
+        
+        const days = Math.floor(elapsed / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((elapsed % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+        
+        document.getElementById('survivalTime').textContent = `${days}D ${hours}H ${minutes}M`;
+      }
+      
+      updateTime();
+      setInterval(updateTime, 60000); // Update every minute
+    }
+
+    function hideLoading() {
+      document.getElementById('loadingOverlay').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    }
+
+    function showError(message) {
+      const errorElement = document.getElementById('errorMessage');
+      errorElement.textContent = `⚠ ${message}`;
+      errorElement.style.display = 'block';
+    }
+
+    // Action functions
+    function editProfile() {
+      alert('Profile editing interface coming soon...');
+    }
+
+    function viewStats() {
+      alert('Detailed statistics panel coming soon...');
+    }
+
+    function settings() {
+      alert('Game settings panel coming soon...');
+    }
+
+    async function logout() {
+      if (confirm('Are you sure you want to exit the game?')) {
+        try {
+          const response = await fetch('https://backend.abquaoub.me/api/logout', {
+            method: 'POST',
+            credentials: 'include'
+          });
+          
+          if (response.ok) {
+            window.location.href = '/login.html';
+          } else {
+            alert('Logout failed. Please try again.');
+          }
+        } catch (error) {
+          console.error('Logout error:', error);
+          alert('Network error during logout.');
+        }
+      }
+    }
+
+    // Add some interactive effects
+    document.addEventListener('mousemove', function(e) {
+      const shapes = document.querySelectorAll('.shape');
+      shapes.forEach((shape, index) => {
+        const speed = (index + 1) * 0.0001;
+        const x = e.clientX * speed;
+        const y = e.clientY * speed;
+        shape.style.transform += ` translate(${x}px, ${y}px)`;
+      });
+    });
+
+    // Refresh data every 5 minutes
+    setInterval(loadPlayerData, 300000);
+  </script>
 </body>
 </html>
