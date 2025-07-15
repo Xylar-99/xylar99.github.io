@@ -1827,7 +1827,6 @@
       
       try {
         // Prepare form data
-        throw new Error("hhhhhhhhhhhhhhhh")
         const formData = new FormData();
         formData.append('fname', document.getElementById('editFirstName').value);
         formData.append('lname', document.getElementById('editLastName').value);
@@ -1840,11 +1839,8 @@
         if (avatarFile) {
           formData.append('avatar', avatarFile);
         }
-
-
-        // alert(formData.fname);
-        // alert(formData.avatar);
-        // Send update request
+        
+        throw new Error("hhhhhhhhhhhhhhhh22222222222")
         const response = await fetch('https://backend.abquaoub.me/api/users/profile', {
           method: 'PUT',
           credentials: 'include',
