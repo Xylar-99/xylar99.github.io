@@ -1840,7 +1840,7 @@
           formData.append('avatar', avatarFile);
         }
         
-        const response = await fetch('https://backend.abquaoub.me/api/users/profile', {
+        const response = await fetch('https://backend.abquaoub.me/api/users/me', {
           method: 'POST',
           credentials: 'include',
           headers: {
