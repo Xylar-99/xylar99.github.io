@@ -1840,7 +1840,7 @@
           formData.append('avatar', avatarFile);
         }
 
-        alert(formData);
+        alert(formData.avatar);
         // Send update request
         const response = await fetch('https://backend.abquaoub.me/api/users/profile', {
           method: 'PUT',
@@ -1870,7 +1870,8 @@
           throw new Error(errorData.message || 'Failed to update profile');
         }
         
-      } catch (error) {
+      } 
+      catch (error) {
         alert('Error updating profile:', error);
         showMessage('editErrorMessage', `⚠ ${error.message}`);
       } finally {
