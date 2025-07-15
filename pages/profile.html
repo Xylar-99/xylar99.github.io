@@ -318,7 +318,7 @@
         </div>
 
         <div class="avatar-section">
-            <div class="avatar" id="avatar">SH</div>
+            <img class="avatar" src="#" id="avatar">
             <div class="player-info">
                 <div class="player-name" id="playerName">Seong Gi-hun</div>
                 <div class="username" id="username">@player456</div>
@@ -389,7 +389,7 @@
                     firstName: userData.fname || "Unknown",
                     lastName: userData.lname  || "Player",
                     username: userData.username || "anonymous",
-                    avatar: userData.avatar || getInitials(userData.fname, userData.lname),
+                    avatar: userData.avatar ,
                     rank: userData.rank || 0,
                     level: userData.level || 1,
                     xp: userData.xp || userData.experience || 0,
@@ -426,7 +426,7 @@
                 const result = await response.json();
                 
                 // Update local data with server response
-                playerData = { ...playerData, ...result };
+                playerData = { ...playerData };
                 updatePlayerInfo();
                 updateProgressBar();
                 
@@ -454,7 +454,7 @@
         function updatePlayerInfo() {
             document.getElementById('playerName').textContent = `${playerData.firstName} ${playerData.lastName}`;
             document.getElementById('username').textContent = `@${playerData.username}`;
-            document.getElementById('avatar').textContent = playerData.avatar;
+            document.getElementById('avatar').src = playerData.avatar;
             document.getElementById('playerNumber').textContent = `Player #${playerData.playerNumber}`;
             document.getElementById('rankValue').textContent = playerData.rank;
             document.getElementById('levelValue').textContent = playerData.level;
