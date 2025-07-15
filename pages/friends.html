@@ -1,233 +1,12 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Friend Requests</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        
-        .user-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-}
-
-.user-avatar {
-    flex-shrink: 0;
-}
-
-.avatar-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #e0e0e0;
-}
-
-.user-info {
-    flex-grow: 1;
-}
-
-.friend-btn {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-        .container {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .user-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            background: #fafafa;
-        }
-        
-        .user-info {
-            flex-grow: 1;
-        }
-        
-        .user-name {
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .user-id {
-            color: #666;
-            font-size: 0.9em;
-        }
-        
-        .friend-btn {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .friend-btn:hover {
-            background: #0056b3;
-        }
-        
-        .friend-btn:disabled {
-            background: #28a745;
-            cursor: not-allowed;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-        }
-        
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Send Friend Requests</h1>
-        <div id="userList">
-            <div class="loading">Loading users...</div>
-        </div>
-    </div>
-
-    <script>
-
-    let profile;
-
-        // Fetch users from API
-
-        async function getUser() 
-        {
-            
-            const res = await fetch('/api/users/me');
-            if (!res.ok) throw new Error('Failed to get profile');
-            profile = await res.json();
-            
-        }
-        getUser();
-
-
-        let users = [];
-
-        // Fetch users from API
-        async function fetchUsers() 
-        {
-            const res = await fetch('/api/users/');
-            if (!res.ok) throw new Error('Failed to get profile');
-            users = await res.json();
-            displayUsers();
-
-        }
-
-
-
-        function displayUsers() 
-        {
-            const userList = document.getElementById('userList');
-            
-            if (users.length === 0) {
-                userList.innerHTML = '<div class="loading">No users found</div>';
-                return;
-            }
-
-            userList.innerHTML = users.map(user => `
-                <div class="user-item">
-                    <div class="user-avatar">
-                        <img src="${user.avatarUrl}" 
-                            class="avatar-img">
-                    </div>
-                    <div class="user-info">
-                        <div class="user-name">${user.username || 'Unknown User'}</div>
-                        <div class="user-id">ID: ${user.userId}</div>
-                    </div>
-                    <button class="friend-btn" onclick="sendFriendRequest(${user.userId}, this)">
-                        Add Friend
-                    </button>
-                    <input type="hidden" id="user-${user.userId}" value="${user.userId}">
-                </div>
-            `).join('');
-        }
-
-        // Send friend request
-        async function sendFriendRequest(friendId, button) 
-        {
-            try 
-            {
-                button.disabled = true;
-                button.textContent = 'Sending...';
-               
-                const res = await fetch('/api/friends/request', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                credentials: 'include',
-                body: JSON.stringify({friendId })
-                })
-               
-                const data = await res.json();
-                if(!data.msg)
-                    throw new Error("is ready friends check chat")
-            } 
-            catch (error) 
-            {
-                button.disabled = false;
-                button.textContent = 'Add Friend';
-                alert('Error sending friend request: ' + error.message);
-            }
-        }
-
-
-
-        fetchUsers();
-    </script>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friends Management</title>
+    <title>Player Alliance - Game Network</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -235,52 +14,165 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #2a0505 100%);
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 75%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 25%, rgba(255, 20, 147, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .geometric-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border: 2px solid rgba(255, 20, 147, 0.2);
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 35px solid rgba(255, 20, 147, 0.1);
+            border: none;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            top: 60%;
+            right: 10%;
+            animation-delay: 4s;
+        }
+
+        .square {
+            width: 35px;
+            height: 35px;
+            bottom: 20%;
+            left: 85%;
+            animation-delay: 8s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(180deg); opacity: 0.6; }
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 20, 147, 0.3);
+            border-radius: 0;
+            padding: 40px;
+            box-shadow: 
+                0 0 50px rgba(255, 20, 147, 0.2),
+                inset 0 0 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff1493, #ff69b4, #ff1493);
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
             text-align: center;
-            color: #2c3e50;
-            margin-bottom: 40px;
-            font-size: 2.5em;
-            font-weight: 300;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #ffffff;
+            margin-bottom: 50px;
+            font-size: 36px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff1493, transparent);
         }
 
         .tabs {
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #ecf0f1;
+            margin-bottom: 40px;
+            border-bottom: 2px solid rgba(255, 20, 147, 0.3);
+            flex-wrap: wrap;
         }
 
         .tab {
-            padding: 15px 30px;
+            padding: 20px 30px;
             background: none;
             border: none;
             cursor: pointer;
             font-size: 16px;
-            font-weight: 500;
-            color: #7f8c8d;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.6);
             transition: all 0.3s ease;
             position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: inherit;
         }
 
         .tab.active {
-            color: #667eea;
+            color: #ff1493;
         }
 
         .tab.active::after {
@@ -290,12 +182,16 @@
             left: 0;
             right: 0;
             height: 2px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, #ff1493, #ff69b4);
+        }
+
+        .tab:hover:not(.active) {
+            color: #ff69b4;
         }
 
         .tab-content {
             display: none;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.5s ease;
         }
 
         .tab-content.active {
@@ -310,32 +206,58 @@
         .user-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 20px;
-            margin-bottom: 15px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            gap: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0;
             transition: all 0.3s ease;
-            border: 1px solid #ecf0f1;
+            position: relative;
         }
 
         .user-item:hover {
+            border-color: #ff1493;
+            background: rgba(255, 20, 147, 0.05);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.3);
         }
 
         .user-avatar {
             flex-shrink: 0;
+            position: relative;
         }
 
         .avatar-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            border-radius: 0;
             object-fit: cover;
-            border: 3px solid #667eea;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 3px solid #ff1493;
+            box-shadow: 0 0 15px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .avatar-img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 20, 147, 0.6);
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 15px;
+            height: 15px;
+            background: #00ff88;
+            border: 2px solid #000000;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
         }
 
         .user-info {
@@ -343,44 +265,71 @@
         }
 
         .user-name {
-            font-weight: 600;
-            color: #2c3e50;
-            font-size: 1.1em;
-            margin-bottom: 5px;
+            font-weight: 900;
+            color: #ffffff;
+            font-size: 20px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .user-id {
-            color: #7f8c8d;
-            font-size: 0.9em;
+            color: #ff69b4;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
         }
 
         .user-status {
-            color: #e67e22;
-            font-size: 0.85em;
-            font-style: italic;
+            color: #00ff88;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .button-group {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
-            border-radius: 8px;
+            border-radius: 0;
             cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 12px;
+            font-weight: 900;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .btn:disabled {
@@ -390,47 +339,50 @@
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            color: #000000;
         }
 
         .btn-success {
-            background: linear-gradient(45deg, #27ae60, #2ecc71);
-            color: white;
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            color: #000000;
         }
 
         .btn-danger {
-            background: linear-gradient(45deg, #e74c3c, #c0392b);
-            color: white;
+            background: linear-gradient(45deg, #dc143c, #ff6b6b);
+            color: #ffffff;
         }
 
         .btn-warning {
-            background: linear-gradient(45deg, #f39c12, #e67e22);
-            color: white;
+            background: linear-gradient(45deg, #ffa500, #ff8c00);
+            color: #000000;
         }
 
         .btn-secondary {
-            background: linear-gradient(45deg, #95a5a6, #7f8c8d);
-            color: white;
+            background: linear-gradient(45deg, #666666, #888888);
+            color: #ffffff;
         }
 
         .loading {
             text-align: center;
-            padding: 60px 20px;
-            color: #7f8c8d;
-            font-size: 1.2em;
+            padding: 80px 20px;
+            color: #ff69b4;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .loading::after {
             content: '';
             display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #ecf0f1;
-            border-top: 2px solid #667eea;
+            width: 25px;
+            height: 25px;
+            border: 3px solid rgba(255, 20, 147, 0.3);
+            border-top: 3px solid #ff1493;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-left: 10px;
+            margin-left: 15px;
         }
 
         @keyframes spin {
@@ -439,131 +391,194 @@
         }
 
         .error {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
+            background: rgba(220, 20, 60, 0.2);
+            border: 1px solid #dc143c;
+            color: #ff6b6b;
+            padding: 25px;
+            border-radius: 0;
+            margin-bottom: 25px;
             text-align: center;
-            font-weight: 500;
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(220, 20, 60, 0.3);
         }
 
         .success {
-            background: linear-gradient(45deg, #51cf66, #40c057);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
+            background: rgba(0, 255, 136, 0.2);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 25px;
+            border-radius: 0;
+            margin-bottom: 25px;
             text-align: center;
-            font-weight: 500;
-            box-shadow: 0 5px 15px rgba(81, 207, 102, 0.3);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
         .empty-state {
             text-align: center;
-            padding: 60px 20px;
-            color: #7f8c8d;
+            padding: 80px 20px;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .empty-state h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #95a5a6;
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ff69b4;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .empty-state p {
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .badge {
             display: inline-block;
-            padding: 4px 8px;
-            background: #e74c3c;
-            color: white;
-            border-radius: 12px;
-            font-size: 0.8em;
-            font-weight: 600;
-            margin-left: 10px;
+            padding: 6px 12px;
+            background: #dc143c;
+            color: #ffffff;
+            border-radius: 0;
+            font-size: 10px;
+            font-weight: 900;
+            margin-left: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .search-box {
             width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #ecf0f1;
-            border-radius: 12px;
+            padding: 20px 25px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0;
             font-size: 16px;
-            margin-bottom: 20px;
-            background: white;
-            transition: border-color 0.3s ease;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .search-box:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #ff1493;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .player-count {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 20, 147, 0.2);
+            border: 1px solid rgba(255, 20, 147, 0.5);
+            color: #ff1493;
+            padding: 10px 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 25px;
+                margin: 10px;
             }
             
             .tabs {
-                flex-wrap: wrap;
+                flex-direction: column;
+                align-items: center;
             }
             
             .tab {
-                padding: 10px 15px;
+                padding: 15px 20px;
                 font-size: 14px;
+                width: 100%;
+                text-align: center;
             }
             
             .user-item {
                 flex-direction: column;
                 align-items: flex-start;
+                text-align: center;
             }
             
             .button-group {
                 width: 100%;
-                justify-content: flex-end;
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .geometric-shapes .shape {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
+    <div class="geometric-shapes">
+        <div class="shape triangle"></div>
+        <div class="shape circle"></div>
+        <div class="shape square"></div>
+    </div>
+
     <div class="container">
-        <h1>Friends Management</h1>
+        <div class="player-count" id="playerCount">PLAYERS: 456</div>
+        
+        <h1>Player Alliance Network</h1>
         
         <div class="tabs">
-            <button class="tab active" onclick="showTab('friends')">My Friends</button>
-            <button class="tab" onclick="showTab('requests')">Friend Requests</button>
-            <button class="tab" onclick="showTab('users')">Find Friends</button>
-            <button class="tab" onclick="showTab('blocked')">Blocked Users</button>
+            <button class="tab active" onclick="showTab('friends')">My Allies</button>
+            <button class="tab" onclick="showTab('requests')">Alliance Requests</button>
+            <button class="tab" onclick="showTab('users')">Find Players</button>
+            <button class="tab" onclick="showTab('blocked')">Blocked Players</button>
         </div>
 
         <!-- Friends List Tab -->
         <div id="friends" class="tab-content active">
-            <input type="text" class="search-box" placeholder="Search friends..." onkeyup="filterFriends(this.value)">
+            <input type="text" class="search-box" placeholder="Search allies..." onkeyup="filterFriends(this.value)">
             <div id="friendsList">
-                <div class="loading">Loading friends...</div>
+                <div class="loading">Loading alliance network...</div>
             </div>
         </div>
 
         <!-- Friend Requests Tab -->
         <div id="requests" class="tab-content">
             <div id="requestsList">
-                <div class="loading">Loading friend requests...</div>
+                <div class="loading">Loading alliance requests...</div>
             </div>
         </div>
 
         <!-- Find Friends Tab -->
         <div id="users" class="tab-content">
-            <input type="text" class="search-box" placeholder="Search users..." onkeyup="filterUsers(this.value)">
+            <input type="text" class="search-box" placeholder="Search players..." onkeyup="filterUsers(this.value)">
             <div id="usersList">
-                <div class="loading">Loading users...</div>
+                <div class="loading">Loading player database...</div>
             </div>
         </div>
 
         <!-- Blocked Users Tab -->
         <div id="blocked" class="tab-content">
             <div id="blockedList">
-                <div class="loading">Loading blocked users...</div>
+                <div class="loading">Loading blocked players...</div>
             </div>
         </div>
     </div>
@@ -577,99 +592,84 @@
         let currentTab = 'friends';
 
         // Initialize the page
-        async function init() 
-        {
-            try 
-            {
+        async function init() {
+            try {
                 await getUser();
                 await loadFriends();
                 await loadRequests();
                 await loadBlockedUsers();
                 await loadAllUsers();
-            } 
-            catch (error) {
+                updatePlayerCount();
+            } catch (error) {
                 console.error('Initialization error:', error);
-                showError('Failed to load data. Please refresh the page.');
+                showError('Failed to access player network. Connection terminated.');
             }
         }
 
         // Get current user profile
-        async function getUser() 
-        {
-            const res = await fetch('https://backend.abquaoub.me/api/users/me' , {credentials: 'include'});
+        async function getUser() {
+            const res = await fetch('https://backend.abquaoub.me/api/users/me', {credentials: 'include'});
             if (!res.ok) throw new Error('Failed to get profile');
             profile = await res.json();
         }
 
         // Load friends list
-        async function loadFriends() 
-        {
-            try 
-            {
-                const res = await fetch('https://backend.abquaoub.me/api/friends/' , {credentials: 'include',});
-                if (!res.ok) throw new Error('Failed to load friends');
+        async function loadFriends() {
+            try {
+                const res = await fetch('https://backend.abquaoub.me/api/friends/', {credentials: 'include'});
+                if (!res.ok) throw new Error('Failed to load allies');
                 friends = await res.json();
                 displayFriends();
             } catch (error) {
-                document.getElementById('friendsList').innerHTML = '<div class="error">Error loading friends: ' + error.message + '</div>';
+                document.getElementById('friendsList').innerHTML = '<div class="error">⚠ Error loading allies: ' + error.message + '</div>';
             }
         }
 
         // Load friend requests
         async function loadRequests() {
-            try 
-            {
-                res = await fetch('https://backend.abquaoub.me/api/friends/pending' , {credentials: 'include',});
-           
-                if (!res.ok) throw new Error('Failed to load friend requests');
+            try {
+                const res = await fetch('https://backend.abquaoub.me/api/friends/pending', {credentials: 'include'});
+                if (!res.ok) throw new Error('Failed to load alliance requests');
                 requests = await res.json();
                 displayRequests();
-            } 
-            catch (error) 
-            {
-                document.getElementById('requestsList').innerHTML = '<div class="error">Error loading requests: ' + error.message + '</div>';
+            } catch (error) {
+                document.getElementById('requestsList').innerHTML = '<div class="error">⚠ Error loading requests: ' + error.message + '</div>';
             }
         }
 
         // Load blocked users
-        async function loadBlockedUsers() 
-        {
-            try 
-            {
-                const res = await fetch('https://backend.abquaoub.me/api/friends/blocked/' , {credentials: 'include',});
-                if (!res.ok) throw new Error('Failed to load blocked users');
+        async function loadBlockedUsers() {
+            try {
+                const res = await fetch('https://backend.abquaoub.me/api/friends/blocked/', {credentials: 'include'});
+                if (!res.ok) throw new Error('Failed to load blocked players');
                 blockedUsers = await res.json();
                 displayBlockedUsers();
-            } 
-            catch (error) {
-                document.getElementById('blockedList').innerHTML = '<div class="error">Error loading blocked users: ' + error.message + '</div>';
+            } catch (error) {
+                document.getElementById('blockedList').innerHTML = '<div class="error">⚠ Error loading blocked players: ' + error.message + '</div>';
             }
         }
 
         // Load all users for friend invitations
-        async function loadAllUsers() {    
+        async function loadAllUsers() {
             try {
-                const res = await fetch('https://backend.abquaoub.me/api/users/' , {credentials: 'include',});
-                if (!res.ok) throw new Error('Failed to load users');
+                const res = await fetch('https://backend.abquaoub.me/api/users/', {credentials: 'include'});
+                if (!res.ok) throw new Error('Failed to load player database');
                 allUsers = await res.json();
                 displayAllUsers();
-            } 
-            catch (error) 
-            {
-                document.getElementById('usersList').innerHTML = '<div class="error">Error loading users: ' + error.message + '</div>';
+            } catch (error) {
+                document.getElementById('usersList').innerHTML = '<div class="error">⚠ Error loading player database: ' + error.message + '</div>';
             }
         }
 
-        // Display friends
-        function displayFriends() 
-        {
+        // Display functions with Squid Game theming
+        function displayFriends() {
             const friendsList = document.getElementById('friendsList');
             
             if (friends.length === 0) {
                 friendsList.innerHTML = `
                     <div class="empty-state">
-                        <h3>No friends yet</h3>
-                        <p>Start adding friends to see them here!</p>
+                        <h3>No Allies Found</h3>
+                        <p>Form alliances to survive the games</p>
                     </div>
                 `;
                 return;
@@ -678,18 +678,19 @@
             friendsList.innerHTML = friends.map(friend => `
                 <div class="user-item" data-user-id="${friend.userId}">
                     <div class="user-avatar">
-                        <img src="${friend.avatarUrl || '/default-avatar.png'}" 
+                        <img src="${friend.avatarUrl || '/placeholder.svg?height=70&width=70'}" 
                              class="avatar-img" 
                              alt="${friend.username}">
+                        <div class="status-dot" title="Active Player"></div>
                     </div>
                     <div class="user-info">
-                        <div class="user-name">${friend.username || 'Unknown User'}</div>
-                        <div class="user-id">ID: ${friend.userId}</div>
-                        <div class="user-status">Online</div>
+                        <div class="user-name">${friend.username || 'Unknown Player'}</div>
+                        <div class="user-id">Player ID: ${friend.userId}</div>
+                        <div class="user-status">Allied Player</div>
                     </div>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="startChat(${friend.userId})">
-                            Message
+                            Contact
                         </button>
                         <button class="btn btn-warning" onclick="blockUser(${friend.userId})">
                             Block
@@ -702,17 +703,14 @@
             `).join('');
         }
 
-        // Display friend requests
-        function displayRequests() 
-        {
+        function displayRequests() {
             const requestsList = document.getElementById('requestsList');
             
-            if (requests.length === 0) 
-            {
+            if (requests.length === 0) {
                 requestsList.innerHTML = `
                     <div class="empty-state">
-                        <h3>No friend requests</h3>
-                        <p>You don't have any pending friend requests.</p>
+                        <h3>No Alliance Requests</h3>
+                        <p>No pending alliance requests found</p>
                     </div>
                 `;
                 return;
@@ -721,14 +719,15 @@
             requestsList.innerHTML = requests.map(request => `
                 <div class="user-item" data-request-id="${request.userId}">
                     <div class="user-avatar">
-                        <img src="${request.avatarUrl || '/default-avatar.png'}" 
+                        <img src="${request.avatarUrl || '/placeholder.svg?height=70&width=70'}" 
                              class="avatar-img" 
                              alt="${request.username}">
+                        <div class="status-dot" title="Requesting Alliance"></div>
                     </div>
                     <div class="user-info">
-                        <div class="user-name">${request.username || 'Unknown User'}</div>
-                        <div class="user-id">ID: ${request.userId}</div>
-                        <div class="user-status">Wants to be your friend</div>
+                        <div class="user-name">${request.username || 'Unknown Player'}</div>
+                        <div class="user-id">Player ID: ${request.userId}</div>
+                        <div class="user-status">Alliance Request</div>
                     </div>
                     <div class="button-group">
                         <button class="btn btn-success" onclick="acceptFriendRequest(${request.userId})">
@@ -745,16 +744,14 @@
             `).join('');
         }
 
-        // Display blocked users
-        function displayBlockedUsers() 
-        {
+        function displayBlockedUsers() {
             const blockedList = document.getElementById('blockedList');
             
             if (blockedUsers.length === 0) {
                 blockedList.innerHTML = `
                     <div class="empty-state">
-                        <h3>No blocked users</h3>
-                        <p>You haven't blocked anyone yet.</p>
+                        <h3>No Blocked Players</h3>
+                        <p>No players have been eliminated from your network</p>
                     </div>
                 `;
                 return;
@@ -763,14 +760,14 @@
             blockedList.innerHTML = blockedUsers.map(user => `
                 <div class="user-item" data-block-id="${user.userId}">
                     <div class="user-avatar">
-                        <img src="${user.avatarUrl || '/default-avatar.png'}" 
+                        <img src="${user.avatarUrl || '/placeholder.svg?height=70&width=70'}" 
                              class="avatar-img" 
                              alt="${user.username}">
                     </div>
                     <div class="user-info">
-                        <div class="user-name">${user.username || 'Unknown User'}</div>
-                        <div class="user-id">ID: ${user.userId}</div>
-                        <div class="user-status">Blocked</div>
+                        <div class="user-name">${user.username || 'Unknown Player'}</div>
+                        <div class="user-id">Player ID: ${user.userId}</div>
+                        <div class="user-status">Blocked Player</div>
                     </div>
                     <div class="button-group">
                         <button class="btn btn-secondary" onclick="unblockUser(${user.userId})">
@@ -781,25 +778,35 @@
             `).join('');
         }
 
-        // Display all users for friend invitations
-        function displayAllUsers(filteredUsers = allUsers) 
-        {
+        function displayAllUsers(filteredUsers = allUsers) {
             const usersList = document.getElementById('usersList');
-            usersList.innerHTML = allUsers.map(user => `
+            
+            if (filteredUsers.length === 0) {
+                usersList.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No Players Found</h3>
+                        <p>Player database is empty or search returned no results</p>
+                    </div>
+                `;
+                return;
+            }
+
+            usersList.innerHTML = filteredUsers.map(user => `
                 <div class="user-item" data-user-id="${user.userId}">
                     <div class="user-avatar">
-                        <img src="${user.avatarUrl || '/default-avatar.png'}" 
+                        <img src="${user.avatarUrl || '/placeholder.svg?height=70&width=70'}" 
                              class="avatar-img" 
                              alt="${user.username}">
+                        <div class="status-dot" title="Available Player"></div>
                     </div>
                     <div class="user-info">
-                        <div class="user-name">${user.username || 'Unknown User'}</div>
-                        <div class="user-id">ID: ${user.userId}</div>
-                        <div class="user-status">Available to add</div>
+                        <div class="user-name">${user.username || 'Unknown Player'}</div>
+                        <div class="user-id">Player ID: ${user.userId}</div>
+                        <div class="user-status">Available for Alliance</div>
                     </div>
                     <div class="button-group">
                         <button class="btn btn-primary" onclick="sendFriendRequest(${user.userId})">
-                            Add Friend
+                            Send Request
                         </button>
                         <button class="btn btn-warning" onclick="blockUser(${user.userId})">
                             Block
@@ -810,8 +817,7 @@
         }
 
         // Tab switching
-        function showTab(tabName) 
-        {
+        function showTab(tabName) {
             // Update tab buttons
             document.querySelectorAll('.tab').forEach(tab => {
                 tab.classList.remove('active');
@@ -827,16 +833,16 @@
             currentTab = tabName;
         }
 
-        // Filter friends
+        // Filter functions
         function filterFriends(query) {
             const filtered = friends.filter(friend => 
                 friend.username.toLowerCase().includes(query.toLowerCase()) ||
                 friend.userId.toString().includes(query)
             );
-            displayFriends(filtered);
+            // Update display with filtered results
+            displayFilteredFriends(filtered);
         }
 
-        // Filter users
         function filterUsers(query) {
             const filtered = allUsers.filter(user => 
                 user.username.toLowerCase().includes(query.toLowerCase()) ||
@@ -845,9 +851,49 @@
             displayAllUsers(filtered);
         }
 
-        // Send friend request
-        async function sendFriendRequest(friendId) 
-        {
+        function displayFilteredFriends(filtered) {
+            const friendsList = document.getElementById('friendsList');
+            
+            if (filtered.length === 0) {
+                friendsList.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No Matching Allies</h3>
+                        <p>No allies match your search criteria</p>
+                    </div>
+                `;
+                return;
+            }
+
+            friendsList.innerHTML = filtered.map(friend => `
+                <div class="user-item" data-user-id="${friend.userId}">
+                    <div class="user-avatar">
+                        <img src="${friend.avatarUrl || '/placeholder.svg?height=70&width=70'}" 
+                             class="avatar-img" 
+                             alt="${friend.username}">
+                        <div class="status-dot" title="Active Player"></div>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name">${friend.username || 'Unknown Player'}</div>
+                        <div class="user-id">Player ID: ${friend.userId}</div>
+                        <div class="user-status">Allied Player</div>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="startChat(${friend.userId})">
+                            Contact
+                        </button>
+                        <button class="btn btn-warning" onclick="blockUser(${friend.userId})">
+                            Block
+                        </button>
+                        <button class="btn btn-danger" onclick="removeFriend(${friend.userId})">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // API interaction functions
+        async function sendFriendRequest(friendId) {
             try {
                 const button = event.target;
                 button.disabled = true;
@@ -861,22 +907,18 @@
                 });
 
                 const data = await res.json();
-                if (!res.ok) throw new Error(data.message || 'Failed to send friend request');
+                if (!res.ok) throw new Error(data.message || 'Failed to send alliance request');
 
-                showSuccess('Friend request sent successfully!');
-                
-                // Remove the user from the list or refresh the display
+                showSuccess('✓ Alliance request sent successfully!');
                 await loadAllUsers();
             } catch (error) {
-                showError('Error sending friend request: ' + error.message);
+                showError('⚠ Error sending alliance request: ' + error.message);
                 event.target.disabled = false;
-                event.target.textContent = 'Add Friend';
+                event.target.textContent = 'Send Request';
             }
         }
 
-        // Accept friend request
-        async function acceptFriendRequest(requestId) 
-        {
+        async function acceptFriendRequest(requestId) {
             try {
                 const button = event.target;
                 button.disabled = true;
@@ -889,21 +931,19 @@
                     body: JSON.stringify({ requestId })
                 });
 
-                if (!res.ok) throw new Error('Failed to accept friend request');
+                if (!res.ok) throw new Error('Failed to accept alliance request');
                 
-                showSuccess('Friend request accepted!');
+                showSuccess('✓ Alliance request accepted!');
                 await loadRequests();
                 await loadFriends();
             } catch (error) {
-                showError('Error accepting friend request: ' + error.message);
+                showError('⚠ Error accepting alliance request: ' + error.message);
                 event.target.disabled = false;
                 event.target.textContent = 'Accept';
             }
         }
 
-        // Reject friend request
-        async function rejectFriendRequest(requestId) 
-        {
+        async function rejectFriendRequest(requestId) {
             try {
                 const button = event.target;
                 button.disabled = true;
@@ -913,121 +953,88 @@
                     method: 'POST',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include',
                     body: JSON.stringify({ requestId })
                 });
 
-                if (!res.ok) throw new Error('Failed to reject friend request');
+                if (!res.ok) throw new Error('Failed to reject alliance request');
                 
-                showSuccess('Friend request rejected.');
+                showSuccess('✓ Alliance request rejected.');
                 await loadRequests();
             } catch (error) {
-                showError('Error rejecting friend request: ' + error.message);
+                showError('⚠ Error rejecting alliance request: ' + error.message);
                 event.target.disabled = false;
                 event.target.textContent = 'Reject';
             }
         }
 
-        // Remove friend
-        async function removeFriend(friendId) 
-        {
-            // if (!confirm('Are you sure you want to remove this friend?')) return;
-
+        async function removeFriend(friendId) {
             try {
                 const button = event.target;
                 button.disabled = true;
                 button.textContent = 'Removing...';
 
-                const res = await fetch(`https://backend.abquaoub.me/api/friends/${friendId}`, {method: 'DELETE' , credentials: 'include',});
+                const res = await fetch(`https://backend.abquaoub.me/api/friends/${friendId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
 
-                if (!res.ok) throw new Error('Failed to remove friend');
+                if (!res.ok) throw new Error('Failed to remove ally');
                 
-                showSuccess('Friend removed successfully.');
+                showSuccess('✓ Ally removed from network.');
                 await loadFriends();
-            } 
-            catch (error) 
-            {
-                showError('Error removing friend: ' + error.message);
+            } catch (error) {
+                showError('⚠ Error removing ally: ' + error.message);
                 event.target.disabled = false;
                 event.target.textContent = 'Remove';
             }
         }
 
-        // Block user
-        async function blockUser(userId) 
-        {
-
+        async function blockUser(userId) {
             try {
                 const button = event.target;
                 button.disabled = true;
                 button.textContent = 'Blocking...';
 
-                const res = await fetch(`https://backend.abquaoub.me/api/friends/blocked/${userId}`, { method: 'POST',credentials: 'include', });
+                const res = await fetch(`https://backend.abquaoub.me/api/friends/blocked/${userId}`, {
+                    method: 'POST',
+                    credentials: 'include'
+                });
 
-                if (!res.ok) throw new Error('Failed to block user');
+                if (!res.ok) throw new Error('Failed to block player');
                 
-                showSuccess('User blocked successfully.');
+                showSuccess('✓ Player blocked successfully.');
                 await loadFriends();
                 await loadRequests();
                 await loadBlockedUsers();
-                await loadAllUsers(); 
-            } 
-            catch (error) 
-            {
-                showError('Error blocking user: ' + error.message);
+                await loadAllUsers();
+            } catch (error) {
+                showError('⚠ Error blocking player: ' + error.message);
                 event.target.disabled = false;
                 event.target.textContent = 'Block';
             }
         }
 
-        // Unblock user
-        async function unblockUser(blockId) 
-        {
-            alert(blockId)
+        async function unblockUser(blockId) {
             try {
                 const button = event.target;
                 button.disabled = true;
                 button.textContent = 'Unblocking...';
 
-                const res = await fetch(`https://backend.abquaoub.me/api/friends/blocked/${blockId}`,  {credentials: 'include',});
+                const res = await fetch(`https://backend.abquaoub.me/api/friends/blocked/${blockId}`, {
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
 
-                if (!res.ok) throw new Error('Failed to unblock user');
+                if (!res.ok) throw new Error('Failed to unblock player');
                 
-                showSuccess('User unblocked successfully.');
+                showSuccess('✓ Player unblocked successfully.');
                 await loadBlockedUsers();
             } catch (error) {
-                showError('Error unblocking user: ' + error.message);
+                showError('⚠ Error unblocking player: ' + error.message);
                 event.target.disabled = false;
                 event.target.textContent = 'Unblock';
             }
         }
 
-        // Start chat (placeholder function)
         function startChat(userId) {
-            // Implement chat functionality
-            alert(`Starting chat with user ${userId}`);
-        }
-
-        // Show success message
-        function showSuccess(message) {
-            const successDiv = document.createElement('div');
-            successDiv.className = 'success';
-            successDiv.textContent = message;
-            document.querySelector('.container').insertBefore(successDiv, document.querySelector('.tabs'));
-            setTimeout(() => successDiv.remove(), 5000);
-        }
-
-        // Show error message
-        function showError(message) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error';
-            errorDiv.textContent = message;
-            document.querySelector('.container').insertBefore(errorDiv, document.querySelector('.tabs'));
-            setTimeout(() => errorDiv.remove(), 5000);
-        }
-
-        // Initialize the page when DOM is loaded
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
-</body>
-</html>
+            alert(`Initiating secure communication with Player ${userI
