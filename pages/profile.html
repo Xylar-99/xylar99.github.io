@@ -1516,11 +1516,12 @@
     }
 
     // Modal Functions
-    function openModal(modalId) {
-      if (modalId === 'editModal' && !playerData) {
-        alert('Player data not loaded yet. Please wait.');
-        return;
-      }
+    function openModal(modalId) 
+    {
+      // if (modalId === 'editModal' && !playerData) {
+      //   alert('Player data not loaded yet. Please wait.');
+      //   return;
+      // }
 
       if (modalId === 'editModal') {
         populateEditForm();
@@ -1545,7 +1546,8 @@
       if (errorMsg) errorMsg.style.display = 'none';
     }
 
-    function populateEditForm() {
+    function populateEditForm() 
+    {
       document.getElementById('editFirstName').value = playerData.fname || '';
       document.getElementById('editLastName').value = playerData.lname || '';
       document.getElementById('editUsername').value = playerData.username || '';
