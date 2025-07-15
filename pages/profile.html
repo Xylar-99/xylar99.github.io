@@ -1077,6 +1077,11 @@
           <input type="text" id="editUsername" name="username" required placeholder="Enter player ID">
         </div>
 
+        <!-- <div class="form-group">
+          <label for="editEmail">Contact Signal</label>
+          <input type="email" id="editEmail" name="email"  placeholder="Enter email address">
+        </div> -->
+
         <div class="form-group">
           <label for="editBio">Player Bio</label>
           <textarea id="editBio" name="bio" rows="4" placeholder="Tell other players about yourself..."></textarea>
@@ -1544,7 +1549,7 @@
       document.getElementById('editFirstName').value = playerData.fname || '';
       document.getElementById('editLastName').value = playerData.lname || '';
       document.getElementById('editUsername').value = playerData.username || '';
-      document.getElementById('editEmail').value = playerData.email || '';
+      // document.getElementById('editEmail').value = playerData.email || '';
       document.getElementById('editBio').value = playerData.bio || '';
 
       const currentAvatar = document.getElementById('playerAvatar').src;
@@ -1844,7 +1849,7 @@
           const updatedData = await response.json();
           
           // Update global player data
-          // playerData = { ...playerData, ...updatedData };
+          playerData = { ...playerData, ...updatedData };
           
           // Update UI with new data
           displayPlayerData(playerData);
