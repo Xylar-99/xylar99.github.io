@@ -700,7 +700,7 @@
       setLoading(true);
 
       try {
-        const res = await fetch('https://backend.abquaoub.me/api/login', {
+        fetch('https://backend.abquaoub.me/api/login', {
           method: 'POST',
           credentials: 'include',
           headers: {
@@ -709,18 +709,9 @@
           body: JSON.stringify({ email, password })
         });
         
-        if (res.ok) 
-        {
-          showSuccess('Access granted! Entering game...');
-          setTimeout(() => {
-            window.location.href = href;
-          }, 1000);
-        } 
-        else {
-          const errorData = await res.json();
-          showError(errorData.message || 'Access denied. Check your credentials.');
-        }
-      } catch (err) {
+       
+      } 
+      catch (err) {
         showError('Connection failed: ' + err.message);
       } finally {
         setLoading(false);
