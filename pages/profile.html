@@ -1831,7 +1831,6 @@
         formData.append('fname', document.getElementById('editFirstName').value);
         formData.append('lname', document.getElementById('editLastName').value);
         formData.append('username', document.getElementById('editUsername').value);
-        // formData.append('email', document.getElementById('editEmail').value);
         formData.append('bio', document.getElementById('editBio').value);
         
         // Add avatar if selected
@@ -1843,9 +1842,6 @@
         const response = await fetch('https://backend.abquaoub.me/api/users/me', {
           method: 'POST',
           credentials: 'include',
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          },
           body: formData
         });
         
