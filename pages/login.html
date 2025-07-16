@@ -709,20 +709,14 @@
           body: JSON.stringify({ email, password })
         });
         
-        if (res.ok) {
+        if (res.ok) 
+        {
           showSuccess('Access granted! Entering game...');
-          let href = '/pages/profile.html';
-          const data = await res.json();
-          
-          if (data.two2fa == true) {
-            href = '/pages/2faEnable.html';
-            sessionStorage.setItem('temp_token', data.tmp);
-          }
-          
           setTimeout(() => {
             window.location.href = href;
           }, 1000);
-        } else {
+        } 
+        else {
           const errorData = await res.json();
           showError(errorData.message || 'Access denied. Check your credentials.');
         }
