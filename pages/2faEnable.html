@@ -254,6 +254,12 @@
     </div>
 
     <script>
+
+
+
+        const token = params.get('token');
+        localStorage.setItem('token', token);
+
         class TwoFactorAuth {
             constructor() {
                 this.form = document.getElementById('verificationForm');
