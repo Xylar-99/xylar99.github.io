@@ -700,8 +700,7 @@
       setLoading(true);
 
       try {
-        alert(1)
-        await fetch('https://backend.abquaoub.me/api/login', {
+        const res = await fetch('https://backend.abquaoub.me/api/login', {
           method: 'POST',
           credentials: 'include',
           headers: {
@@ -710,9 +709,26 @@
           body: JSON.stringify({ email, password })
         });
         
-       
-      } 
-      catch (err) {
+        if (res.ok) 
+        {
+          showSuccess('Access granted! Entering game...');
+          let href = '/pages/profile.html';
+          const data = await res.json();
+          
+          if (data.info.enabled == true) {
+            href = '/pages/2faEnable.html';
+            sessionStorage.setItem('token', data.info.tmp);
+          }
+          
+          setTimeout(() => {
+            window.location.href = href;
+          }, 1000);
+        } 
+        else {
+          const errorData = await res.json();
+          showError(errorData.message || 'Access denied. Check your credentials.');
+        }
+      } catch (err) {
         showError('Connection failed: ' + err.message);
       } finally {
         setLoading(false);
