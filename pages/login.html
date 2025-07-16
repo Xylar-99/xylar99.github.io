@@ -700,7 +700,7 @@
       setLoading(true);
 
       try {
-        fetch('https://backend.abquaoub.me/api/login', {
+        await fetch('https://backend.abquaoub.me/api/login', {
           method: 'POST',
           credentials: 'include',
           headers: {
