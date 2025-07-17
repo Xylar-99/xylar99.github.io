@@ -1848,11 +1848,7 @@
         if (response.ok) {
           const updatedData = await response.json();
           
-          // Update global player data
-          // playerData = { ...playerData, ...updatedData };
-          
-          // // Update UI with new data
-          // displayPlayerData(playerData);
+          displayPlayerData(playerData);
           
           // Show success message
           showMessage('editSuccessMessage', '✓ Profile updated successfully!');
