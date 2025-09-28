@@ -6,24 +6,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary Colors (base of the theme)
-        primary: '#0D0D0D', // Black Soul - backgrounds, strong contrast
-        secondary: '#2E2E2E', // Spirit Gray - secondary background
-        white: '#FFFFFF', // Pure White - main text, highlights
-        
-        // Accent Colors (energy, emphasis)
-        accent: '#F77F00', // Shinigami Orange - Ichigo's theme, buttons/CTAs
-        danger: '#B22222', // Blood Red - danger, warnings, highlights
-        highlight: '#3A86FF', // Soul Blue - calm, links, UI accents
-        
-        // Secondary Shades (soft balance)
-        neutral: '#E5C29F', // Hueco Sand - neutral backgrounds, cards
-        info: '#A3C4F3', // Ice Hollow Blue - secondary accents, info boxes
-        muted: '#C0C0C0', // Steel Silver - borders, muted icons
-        
-        // Optional Glow / Spiritual Effects
-        reiatsu: '#7B2CBF', // Reiatsu Purple - special effects, hover glow
-        zanpakuto: '#06D6A0', // Zanpakutō Teal - success, status highlights
+        primary: '#000000',
+        secondary: '#dc2626',
+        accent: '#8b45c1',
+        red: '#dc2626',
+        'red-light': '#ef4444',
+        'red-dark': '#b91c1c',
+        purple: '#8b45c1',
+        'purple-light': '#a855f7',
+        'purple-dark': '#6b2c91',
+        highlight: '#7c3aed',
+        zanpakuto: '#9333ea',
+      },
+      backgroundImage: {
+        'aizen-gradient': 'linear-gradient(135deg, #000000 0%, #8b45c1 50%, #dc2626 100%)',
+        'reiatsu-gradient': 'linear-gradient(45deg, #dc2626, #8b45c1)',
       },
       fontFamily: {
         'mono': ['JetBrains Mono', 'Monaco', 'Consolas', 'monospace'],

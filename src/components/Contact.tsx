@@ -1,194 +1,211 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-  };
-
   const contactInfo = [
     {
       icon: FaEnvelope,
       label: "Email",
       value: "abdelbassat.quaoubai@gmail.com",
-      link: "mailto:abdelbassat.quaoubai@gmail.com"
+      link: "mailto:abdelbassat.quaoubai@gmail.com",
+      color: "#8b45c1"
     },
     {
       icon: FaLinkedin,
       label: "LinkedIn",
-      value: "linkedin.com/in/abdelbassat-quaoubai",
-      link: "https://linkedin.com/in/abdelbassat-quaoubai"
+      value: "Connect with me",
+      link: "https://linkedin.com/in/abdelbassat-quaoubai",
+      color: "#dc2626"
     },
     {
       icon: FaGithub,
       label: "GitHub",
-      value: "github.com/Xylar-99",
-      link: "https://github.com/Xylar-99"
+      value: "View my repositories",
+      link: "https://github.com/Xylar-99",
+      color: "#9333ea"
     },
     {
       icon: FaMapMarkerAlt,
       label: "Location",
       value: "Morocco",
-      link: null
+      link: null,
+      color: "#7c3aed"
     }
   ];
 
   return (
-    <section id="contact" className="py-20 px-4">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="py-20 px-4 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative">
+        {/* Aizen's Spiritual Energy Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Large mystical circle */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-10">
+            <div 
+              className="w-96 h-96 border-2 rounded-full"
+              style={{
+                borderColor: '#8b45c1',
+                animation: 'spin 30s linear infinite reverse'
+              }}
+            >
+              <div 
+                className="absolute inset-4 border border-red-500 rounded-full opacity-60"
+                style={{ animation: 'spin 20s linear infinite' }}
+              >
+                <div 
+                  className="absolute inset-4 border border-purple-400 rounded-full opacity-80"
+                  style={{ animation: 'spin 15s linear infinite reverse' }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-16 relative z-10"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Get In <span className="gradient-text">Touch</span>
+            Get In <span className="text-transparent bg-gradient-to-r from-purple-400 to-red-500 bg-clip-text">Touch</span>
           </h2>
-          <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-red-500 mx-auto rounded-full"></div>
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            I'm always interested in new opportunities and exciting projects. 
-            Whether you have a question or just want to say hi, feel free to reach out!
+            Connect with me through the spiritual energy of professional networks
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Contact Information */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-8"
-          >
-            <div>
-              <h3 className="text-2xl font-semibold mb-6 text-accent">Let's Connect</h3>
-              <p className="text-gray-300 leading-relaxed mb-8">
-                I'm currently looking for new opportunities in backend development, 
-                system programming, or DevOps. I'm particularly interested in projects 
-                involving C++, containerization, or distributed systems.
-              </p>
-            </div>
+        {/* Aizen's Ego Hands with Circles Design */}
+        <div className="relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+            {contactInfo.map((info, index) => (
+              <motion.div
+                key={info.label}
+                initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
+                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                className="relative group"
+              >
+                {/* Outer mystical circle */}
+                <div 
+                  className="absolute inset-0 rounded-full border opacity-20 group-hover:opacity-60 transition-all duration-500"
+                  style={{
+                    borderColor: info.color,
+                    animation: `spin ${12 + index * 2}s linear infinite`,
+                    transform: 'scale(1.1)'
+                  }}
+                />
+                
+                {/* Middle circle */}
+                <div 
+                  className="absolute inset-1 rounded-full border opacity-30 group-hover:opacity-80 transition-all duration-500"
+                  style={{
+                    borderColor: info.color,
+                    animation: `spin ${8 + index}s linear infinite reverse`,
+                    transform: 'scale(1.05)'
+                  }}
+                />
 
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
+                {/* Main contact circle - Aizen's hand gesture style */}
                 <motion.div
-                  key={info.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-center space-x-4 p-4 bg-secondary rounded-lg border border-gray-700 card-hover"
+                  whileHover={{ 
+                    scale: 1.05,
+                    rotateZ: 5,
+                    boxShadow: `0 0 25px ${info.color}40`
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                  className="relative w-20 h-20 mx-auto rounded-full border flex flex-col items-center justify-center cursor-pointer transition-all duration-300"
+                  style={{
+                    borderColor: info.color,
+                    background: `radial-gradient(circle, ${info.color}10, transparent 70%)`,
+                    boxShadow: `0 0 15px ${info.color}30`
+                  }}
+                  onClick={() => info.link && window.open(info.link, '_blank')}
                 >
-                  <div className="bg-accent/20 p-3 rounded-lg">
-                    <info.icon className="text-accent text-xl" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-white">{info.label}</h4>
-                    {info.link ? (
-                      <a
-                        href={info.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-400 hover:text-accent transition-colors duration-300"
-                      >
-                        {info.value}
-                      </a>
-                    ) : (
-                      <p className="text-gray-400">{info.value}</p>
-                    )}
+                  {/* Inner spiritual energy */}
+                  <div 
+                    className="absolute inset-2 rounded-full border opacity-50"
+                    style={{
+                      borderColor: info.color,
+                      background: `radial-gradient(circle, ${info.color}15, transparent)`
+                    }}
+                  />
+                  
+                  {/* Icon */}
+                  <info.icon 
+                    className="text-lg transition-all duration-300 group-hover:scale-110" 
+                    style={{ color: info.color }}
+                  />
+
+                  {/* Aizen's energy particles */}
+                  <div className="absolute inset-0">
+                    {[...Array(2)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute w-0.5 h-0.5 rounded-full opacity-60"
+                        style={{
+                          backgroundColor: info.color,
+                          top: `${25 + i * 25}%`,
+                          left: `${15 + i * 40}%`,
+                          animation: `float ${3 + i}s ease-in-out infinite`,
+                          animationDelay: `${i * 0.5}s`
+                        }}
+                      />
+                    ))}
                   </div>
                 </motion.div>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Contact Form */}
+                {/* Contact info below circle */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                  className="text-center mt-3"
+                >
+                  <h4 className="text-xs font-semibold mb-1" style={{ color: info.color }}>
+                    {info.label}
+                  </h4>
+                  {info.link ? (
+                    <a
+                      href={info.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-gray-400 hover:text-white transition-colors duration-300 block"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = info.color;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = '#9ca3af';
+                      }}
+                    >
+                      {info.value}
+                    </a>
+                  ) : (
+                    <p className="text-xs text-gray-400">{info.value}</p>
+                  )}
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Central Aizen's Power Symbol */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-secondary p-8 rounded-lg border border-gray-700"
+            transition={{ duration: 1, delay: 1 }}
+            className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           >
-            <h3 className="text-2xl font-semibold mb-6 text-accent">Send a Message</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-white placeholder-gray-400 transition-colors duration-300"
-                  placeholder="John Doe"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-white placeholder-gray-400 transition-colors duration-300"
-                  placeholder="john@example.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-primary border border-gray-600 rounded-lg focus:ring-2 focus:ring-accent focus:border-accent text-white placeholder-gray-400 transition-colors duration-300 resize-vertical"
-                  placeholder="Your message here..."
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full flex items-center justify-center px-8 py-3 bg-gradient-to-r from-accent to-highlight text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
-              >
-                <FaPaperPlane className="mr-2" />
-                Send Message
-              </motion.button>
-            </form>
+            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-red-500 opacity-50 animate-pulse" />
+            <div className="absolute inset-0 w-3 h-3 rounded-full border border-purple-400 animate-ping opacity-30" />
           </motion.div>
         </div>
       </div>

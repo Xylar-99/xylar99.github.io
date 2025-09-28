@@ -69,9 +69,9 @@ const Skills: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Technical <span className="gradient-text">Skills</span>
+            Technical <span className="text-transparent bg-gradient-to-r from-purple-400 to-red-500 bg-clip-text">Skills</span>
           </h2>
-          <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-red-500 mx-auto rounded-full"></div>
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
             A comprehensive overview of my technical expertise and proficiency levels
           </p>
@@ -85,10 +85,13 @@ const Skills: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              className="bg-secondary p-6 rounded-lg border border-gray-700 card-hover spiritual-energy"
+              className="bg-black/90 p-6 rounded-lg border border-purple-500/50 card-hover spiritual-energy"
+              style={{ 
+                boxShadow: '0 0 25px rgba(139, 69, 193, 0.3), 0 0 50px rgba(220, 38, 38, 0.1)' 
+              }}
             >
               <div className="flex items-center mb-6">
-                <category.icon className="text-accent text-2xl mr-3" />
+                <category.icon className="text-2xl mr-3" style={{ color: '#8b45c1' }} />
                 <h3 className="text-xl font-semibold">{category.title}</h3>
               </div>
               
@@ -103,20 +106,21 @@ const Skills: React.FC = () => {
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center">
-                        <skill.icon className="text-accent text-sm mr-2" />
+                        <skill.icon className="text-sm mr-2" style={{ color: '#8b45c1' }} />
                         <span className="text-sm font-medium">{skill.name}</span>
                       </div>
                       <span className="text-xs text-gray-400">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-800 rounded-full h-2 border border-accent/20">
+                    <div className="w-full bg-gray-800 rounded-full h-2 border" style={{ borderColor: 'rgba(139, 69, 193, 0.3)' }}>
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) + 0.3 }}
-                        className="bg-gradient-to-r from-accent via-highlight to-zanpakuto h-2 rounded-full shadow-lg"
+                        className="h-2 rounded-full shadow-lg"
                         style={{
-                          boxShadow: '0 0 8px rgba(247, 127, 0, 0.5)'
+                          background: 'linear-gradient(90deg, #8b45c1 0%, #9333ea 50%, #dc2626 100%)',
+                          boxShadow: '0 0 8px rgba(139, 69, 193, 0.6)'
                         }}
                       />
                     </div>
@@ -134,21 +138,27 @@ const Skills: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16"
         >
-          <div className="bg-gradient-to-r from-accent/10 to-highlight/10 rounded-lg p-8 border border-accent/30 reiatsu-pulse">
-            <h3 className="text-2xl font-semibold mb-6 text-center zanpakuto-gradient">
+          <div className="rounded-lg p-8 border"
+            style={{
+              background: 'linear-gradient(135deg, rgba(139, 69, 193, 0.15) 0%, rgba(220, 38, 38, 0.1) 100%)',
+              borderColor: 'rgba(139, 69, 193, 0.4)',
+              boxShadow: '0 0 30px rgba(139, 69, 193, 0.2)'
+            }}
+          >
+            <h3 className="text-2xl font-semibold mb-6 text-center text-transparent bg-gradient-to-r from-purple-400 to-red-400 bg-clip-text">
               Currently Learning & Exploring
             </h3>
             <div className="grid md:grid-cols-3 gap-6 text-center">
-              <div className="p-4 rounded-lg bg-primary/50 border border-accent/20">
-                <h4 className="text-lg font-medium mb-2 text-accent">Advanced C++</h4>
+              <div className="p-4 rounded-lg bg-black/70 border" style={{ borderColor: 'rgba(139, 69, 193, 0.3)' }}>
+                <h4 className="text-lg font-medium mb-2" style={{ color: '#8b45c1' }}>Advanced C++</h4>
                 <p className="text-white text-sm">Template metaprogramming, concurrency, and performance optimization</p>
               </div>
-              <div className="p-4 rounded-lg bg-primary/50 border border-accent/20">
-                <h4 className="text-lg font-medium mb-2 text-accent">Container Orchestration</h4>
+              <div className="p-4 rounded-lg bg-black/70 border" style={{ borderColor: 'rgba(139, 69, 193, 0.3)' }}>
+                <h4 className="text-lg font-medium mb-2" style={{ color: '#8b45c1' }}>Container Orchestration</h4>
                 <p className="text-white text-sm">Kubernetes, Docker Swarm, and microservices architecture</p>
               </div>
-              <div className="p-4 rounded-lg bg-primary/50 border border-accent/20">
-                <h4 className="text-lg font-medium mb-2 text-accent">System Design</h4>
+              <div className="p-4 rounded-lg bg-black/70 border" style={{ borderColor: 'rgba(139, 69, 193, 0.3)' }}>
+                <h4 className="text-lg font-medium mb-2" style={{ color: '#8b45c1' }}>System Design</h4>
                 <p className="text-white text-sm">Distributed systems, load balancing, and scalability patterns</p>
               </div>
             </div>

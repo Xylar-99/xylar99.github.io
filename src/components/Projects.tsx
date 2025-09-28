@@ -76,7 +76,9 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 px-4 bg-secondary">
+    <section id="projects" className="py-20 px-4" style={{
+      background: 'linear-gradient(135deg, #1a1a1a 0%, #2d1b69 30%, #dc2626 70%, #1a1a1a 100%)'
+    }}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -86,9 +88,9 @@ const Projects: React.FC = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Featured <span className="gradient-text">Projects</span>
+            Featured <span className="text-transparent bg-gradient-to-r from-purple-400 to-red-500 bg-clip-text">Projects</span>
           </h2>
-          <div className="w-24 h-1 bg-accent mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-red-500 mx-auto rounded-full"></div>
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
             A showcase of my individual work and team collaborations from 1337 School, 
             demonstrating proficiency in system programming, web development, and containerization.
@@ -104,7 +106,7 @@ const Projects: React.FC = () => {
           className="mb-12"
         >
           <h3 className="text-2xl lg:text-3xl font-semibold mb-8 text-center">
-            <span className="text-accent">Solo</span> <span className="text-white">Projects</span>
+            <span style={{ color: '#dc2626' }}>Solo</span> <span className="text-white">Projects</span>
           </h3>
           <div className="grid lg:grid-cols-2 gap-8">
             {soloProjects.map((project, index) => (
@@ -114,12 +116,17 @@ const Projects: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-primary rounded-lg border border-gray-700 overflow-hidden card-hover reiatsu-pulse"
+                className="bg-black/80 rounded-lg border border-purple-500/50 overflow-hidden card-hover"
+                style={{ 
+                  boxShadow: '0 0 30px rgba(220, 38, 38, 0.2), 0 0 60px rgba(139, 69, 193, 0.1)' 
+                }}
               >
-                <div className="relative h-48 bg-gradient-to-br from-accent/20 to-highlight/20 flex items-center justify-center">
+                <div className="relative h-48 flex items-center justify-center" style={{
+                  background: 'linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(139, 69, 193, 0.2) 100%)'
+                }}>
                   <div className="flex space-x-4">
                     {project.icons.map((Icon, iconIndex) => (
-                      <Icon key={iconIndex} className="text-4xl text-accent" />
+                      <Icon key={iconIndex} className="text-4xl" style={{ color: '#dc2626' }} />
                     ))}
                   </div>
                 </div>
@@ -129,11 +136,11 @@ const Projects: React.FC = () => {
                   <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
 
                   <div className="mb-4">
-                    <h5 className="text-sm font-semibold text-accent mb-2">Key Features:</h5>
+                    <h5 className="text-sm font-semibold mb-2" style={{ color: '#dc2626' }}>Key Features:</h5>
                     <ul className="text-sm text-gray-400 space-y-1">
                       {project.highlights.map((highlight, highlightIndex) => (
                         <li key={highlightIndex} className="flex items-start">
-                          <span className="text-accent mr-2">•</span>
+                          <span style={{ color: '#dc2626' }} className="mr-2">•</span>
                           {highlight}
                         </li>
                       ))}
@@ -145,7 +152,12 @@ const Projects: React.FC = () => {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-accent/20 text-accent text-sm rounded-full border border-accent/30"
+                          className="px-3 py-1 text-sm rounded-full border"
+                          style={{
+                            backgroundColor: 'rgba(220, 38, 38, 0.2)',
+                            color: '#dc2626',
+                            borderColor: 'rgba(220, 38, 38, 0.3)'
+                          }}
                         >
                           {tech}
                         </span>
@@ -181,7 +193,7 @@ const Projects: React.FC = () => {
           className="mb-12"
         >
           <h3 className="text-2xl lg:text-3xl font-semibold mb-8 text-center">
-            <span className="text-highlight">Team</span> <span className="text-white">Projects</span>
+            <span style={{ color: '#9333ea' }}>Team</span> <span className="text-white">Projects</span>
           </h3>
           <div className="grid lg:grid-cols-1 gap-8">
             {teamProjects.map((project, index) => (
@@ -191,15 +203,24 @@ const Projects: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-primary rounded-lg border border-gray-700 overflow-hidden card-hover reiatsu-pulse"
+                className="bg-black/80 rounded-lg border border-purple-500/50 overflow-hidden card-hover"
+                style={{ 
+                  boxShadow: '0 0 30px rgba(192, 192, 192, 0.1), 0 0 60px rgba(139, 69, 193, 0.1)' 
+                }}
               >
-                <div className="relative h-48 bg-gradient-to-br from-highlight/20 to-zanpakuto/20 flex items-center justify-center">
+                <div className="relative h-48 flex items-center justify-center" style={{
+                  background: 'linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(192, 192, 192, 0.2) 100%)'
+                }}>
                   <div className="flex space-x-4">
                     {project.icons.map((Icon, iconIndex) => (
-                      <Icon key={iconIndex} className="text-4xl text-highlight" />
+                      <Icon key={iconIndex} className="text-4xl" style={{ color: '#9333ea' }} />
                     ))}
                   </div>
-                  <div className="absolute top-4 right-4 bg-highlight/20 text-highlight px-3 py-1 rounded-full text-sm border border-highlight/30">
+                  <div className="absolute top-4 right-4 px-3 py-1 rounded-full text-sm border" style={{
+                    backgroundColor: 'rgba(147, 51, 234, 0.2)',
+                    color: '#9333ea',
+                    borderColor: 'rgba(147, 51, 234, 0.3)'
+                  }}>
                     Team Project
                   </div>
                 </div>
@@ -209,11 +230,11 @@ const Projects: React.FC = () => {
                   <p className="text-gray-400 mb-6 leading-relaxed">{project.description}</p>
 
                   <div className="mb-6">
-                    <h5 className="text-sm font-semibold text-highlight mb-3">My Contributions:</h5>
+                    <h5 className="text-sm font-semibold mb-3" style={{ color: '#9333ea' }}>My Contributions:</h5>
                     <ul className="text-sm text-gray-400 space-y-1">
                       {project.myContributions.map((contribution, contributionIndex) => (
                         <li key={contributionIndex} className="flex items-start">
-                          <span className="text-highlight mr-2">✓</span>
+                          <span style={{ color: '#9333ea' }} className="mr-2">✓</span>
                           {contribution}
                         </li>
                       ))}
@@ -225,7 +246,12 @@ const Projects: React.FC = () => {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-highlight/20 text-highlight text-sm rounded-full border border-highlight/30"
+                          className="px-3 py-1 text-sm rounded-full border"
+                          style={{
+                            backgroundColor: 'rgba(147, 51, 234, 0.2)',
+                            color: '#9333ea',
+                            borderColor: 'rgba(147, 51, 234, 0.3)'
+                          }}
                         >
                           {tech}
                         </span>

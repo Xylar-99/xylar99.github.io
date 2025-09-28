@@ -5,7 +5,10 @@ import { FaCode } from 'react-icons/fa';
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center pt-20 px-4">
+    <section 
+      id="home" 
+      className="h-screen flex items-center justify-center pt-20 px-4 relative"
+    >
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -26,10 +29,9 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-5xl lg:text-7xl font-medium mb-4"
+              className="text-4xl lg:text-5xl font-medium mb-4"
             >
-              <span className="text-white font-normal">Abdelbassat</span>
-              <br />
+              <span className="text-white font-normal">Abdelbassat </span>
               <span className="gradient-text font-semibold">Quaoubai</span>
             </motion.h1>
 
@@ -46,7 +48,13 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              className="text-gray-300 text-lg max-w-2xl mb-8 leading-relaxed"
+              className="text-red-400 text-lg max-w-2xl mb-8 leading-relaxed font-serif"
+              style={{
+                fontFamily: 'Georgia, "Times New Roman", serif',
+                fontWeight: '400',
+                letterSpacing: '0.5px',
+                textShadow: '0 0 10px rgba(255, 165, 0, 0.3)'
+              }}
             >
               I'm a passionate backend developer studying at 1337 (42 Network). 
               I specialize in creating robust server-side applications with C++, 
@@ -208,9 +216,9 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.5, duration: 0.8 }}
-                className="mt-8 bg-secondary/80 backdrop-blur-sm rounded-lg p-6 border border-accent/20"
+                className="mt-8 bg-secondary/80 backdrop-blur-sm rounded-lg p-6 border border-accent/20 max-w-md mx-auto"
               >
-                <div className="grid grid-cols-2 gap-4 text-center">
+                <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <div className="text-2xl font-bold text-accent">3+</div>
                     <div className="text-sm text-muted">Projects</div>
@@ -218,10 +226,6 @@ const Hero: React.FC = () => {
                   <div>
                     <div className="text-2xl font-bold text-zanpakuto">1337</div>
                     <div className="text-sm text-muted">School</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-highlight">C++</div>
-                    <div className="text-sm text-muted">Medium</div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-danger">24/7</div>
