@@ -23,83 +23,53 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center py-4">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-3"
+            className="flex items-center"
           >
             <div className="relative group">
-              {/* Aizen's Spiritual Pressure Effect */}
+              {/* SVG Logo in Circle */}
               <motion.div
                 animate={{ 
-                  rotate: 360,
-                  scale: [1, 1.1, 1]
+                  rotate: [0, 360],
+                  scale: [1, 1.05, 1]
                 }}
                 transition={{ 
-                  rotate: { duration: 12, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                  rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
                 }}
-                className="w-10 h-10 border-2 border-dashed rounded-full"
+                className="w-12 h-12 relative rounded-full overflow-hidden"
                 style={{
-                  borderColor: '#7B2CBF', // Reiatsu Purple
-                  background: 'linear-gradient(45deg, #B22222, #7B2CBF, #F77F00)'
+                  borderRadius: '50%'
                 }}
-              />
+              >
+                <img 
+                  src="/logo.svg" 
+                  alt="Logo" 
+                  className="w-full h-full object-cover rounded-full"
+                  style={{
+                    borderRadius: '50%',
+                    filter: 'drop-shadow(0 0 8px rgba(139, 0, 255, 0.6)) drop-shadow(0 0 15px rgba(77, 0, 128, 0.4))'
+                  }}
+                />
+              </motion.div>
               
-              {/* Inner Spiritual Core */}
+              {/* Spiritual Pressure Aura */}
               <motion.div
                 animate={{
-                  opacity: [0.8, 1, 0.8],
-                  scale: [0.9, 1, 0.9]
+                  opacity: [0.3, 0.8, 0.3],
+                  scale: [1, 1.2, 1]
                 }}
                 transition={{
-                  duration: 1.5,
+                  duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="absolute inset-1 rounded-full flex items-center justify-center"
+                className="absolute inset-0 rounded-full"
                 style={{
-                  background: 'radial-gradient(circle, #7B2CBF 0%, #B22222 50%, #0D0D0D 100%)'
+                  background: 'radial-gradient(circle, rgba(139, 0, 255, 0.2) 0%, rgba(77, 0, 128, 0.1) 50%, transparent 70%)',
+                  filter: 'blur(2px)',
+                  borderRadius: '50%'
                 }}
-              >
-                {/* Aizen's Symbol - A stylized "A" */}
-                <span className="text-white text-xs font-bold">蒼</span>
-              </motion.div>
-              
-              {/* Hovering Particles */}
-              {[...Array(4)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{
-                    rotate: 360,
-                    scale: [0, 1, 0]
-                  }}
-                  transition={{
-                    rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-                    scale: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }
-                  }}
-                  className="absolute w-1 h-1 rounded-full"
-                  style={{
-                    background: '#7B2CBF',
-                    left: `${20 + i * 15}%`,
-                    top: `${20 + i * 15}%`,
-                  }}
-                />
-              ))}
-            </div>
-            
-            {/* Name with Aizen styling */}
-            <div className="flex flex-col">
-              <span 
-                className="text-xl font-bold"
-                style={{
-                  background: 'linear-gradient(135deg, #7B2CBF, #B22222, #F77F00)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                  filter: 'drop-shadow(0 0 6px rgba(123, 44, 191, 0.4))'
-                }}
-              >
-                X99
-              </span>
-              <span className="text-xs text-muted opacity-75">蒼染 右介</span>
+              />
             </div>
           </motion.div>
 

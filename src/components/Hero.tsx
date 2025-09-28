@@ -220,7 +220,7 @@ const Hero: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-highlight">C++</div>
-                    <div className="text-sm text-muted">Expert</div>
+                    <div className="text-sm text-muted">Medium</div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-danger">24/7</div>
