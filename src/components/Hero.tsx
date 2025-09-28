@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaCode } from 'react-icons/fa';
 
+
 const Hero: React.FC = () => {
   return (
     <section id="home" className="min-h-screen flex items-center pt-20 px-4">
