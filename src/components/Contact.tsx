@@ -8,8 +8,8 @@ const Contact: React.FC = () => {
     {
       icon: FaEnvelope,
       label: "Email",
-      value: "abdelbassat.quaoubai@gmail.com",
-      link: "mailto:abdelbassat.quaoubai@gmail.com",
+      value: "abdelbassat.quaoubai99@gmail.com",
+      link: "mailto:abdelbassat.quaoubai99@gmail.com",
       color: "#8b45c1"
     },
     {

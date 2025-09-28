@@ -76,7 +76,6 @@ const App: React.FC = () => {
         />
       </div>
 
-      {/* Content with higher z-index */}
       <div className="relative z-10">
         <Header />
         <main>
