@@ -6,6 +6,7 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 
+
 const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-primary text-white">
