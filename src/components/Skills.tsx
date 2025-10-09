@@ -3,169 +3,226 @@ import { motion } from 'framer-motion';
 import { 
   SiCplusplus, 
   SiDocker, 
-  SiGit, 
-  SiLinux, 
-  SiNginx, 
-  SiMysql,
-  SiMongodb,
-  SiRedis,
-  SiNodedotjs,
-  SiTypescript,
-  SiReact,
-  SiTailwindcss
+  SiNginx,
 } from 'react-icons/si';
+import { FaServer } from 'react-icons/fa';
+
+const skills = [
+  { 
+    name: "C/C++", 
+    icon: <SiCplusplus />, 
+    level: 56,
+    color: "#cc8899"
+  },
+  { 
+    name: "Docker", 
+    icon: <SiDocker />, 
+    level: 70,
+    color: "#cc8899"
+  },
+  { 
+    name: "Backend", 
+    icon: <FaServer />, 
+    level: 68,
+    color: "#cc8899"
+  },
+  { 
+    name: "Web Server", 
+    icon: <SiNginx />, 
+    level: 65,
+    color: "#cc8899"
+  },
+];
 
 const Skills: React.FC = () => {
-  const skillCategories = [
-    {
-      title: "Backend & Systems",
-      icon: SiCplusplus,
-      skills: [
-        { name: "C++", icon: SiCplusplus, level: 90 },
-        { name: "C", icon: SiCplusplus, level: 85 },
-        { name: "System Programming", icon: SiLinux, level: 80 },
-        { name: "Linux", icon: SiLinux, level: 85 }
-      ]
-    },
-    {
-      title: "DevOps & Tools",
-      icon: SiDocker,
-      skills: [
-        { name: "Docker", icon: SiDocker, level: 85 },
-        { name: "Git", icon: SiGit, level: 90 },
-        { name: "Nginx", icon: SiNginx, level: 75 },
-        { name: "Shell Scripting", icon: SiLinux, level: 80 }
-      ]
-    },
-    {
-      title: "Databases",
-      icon: SiMysql,
-      skills: [
-        { name: "MySQL", icon: SiMysql, level: 80 },
-        { name: "MongoDB", icon: SiMongodb, level: 75 },
-        { name: "Redis", icon: SiRedis, level: 70 },
-      ]
-    },
-    {
-      title: "Web Technologies",
-      icon: SiReact,
-      skills: [
-        { name: "Node.js", icon: SiNodedotjs, level: 75 },
-        { name: "TypeScript", icon: SiTypescript, level: 80 },
-        { name: "React", icon: SiReact, level: 85 },
-        { name: "Tailwind CSS", icon: SiTailwindcss, level: 90 }
-      ]
-    }
-  ];
-
   return (
-    <section id="skills" className="py-20 px-4">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="py-32 px-6 relative overflow-hidden">
+      {/* 3D Moving Circles Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Large moving circles */}
+        <motion.div
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-10 left-10 w-[500px] h-[500px] bg-[#cc8899]/10 rounded-full blur-3xl"
+        ></motion.div>
+        
+        <motion.div
+          animate={{
+            x: [0, -80, 0],
+            y: [0, 80, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+          className="absolute bottom-20 right-20 w-[400px] h-[400px] bg-[#cc8899]/10 rounded-full blur-3xl"
+        ></motion.div>
+        
+        <motion.div
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -80, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+          className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-[#cc8899]/5 rounded-full blur-3xl"
+        ></motion.div>
+
+        {/* Rotating circle outlines */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="w-[700px] h-[700px] border border-[#cc8899]/20 rounded-full"></div>
+        </motion.div>
+        
+        <motion.div
+          animate={{ rotate: -360 }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        >
+          <div className="w-[500px] h-[500px] border border-[#cc8899]/10 rounded-full"></div>
+        </motion.div>
+      </div>
+
+      <div className="max-w-5xl mx-auto relative z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-20 text-center"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Technical <span className="text-transparent bg-gradient-to-r from-purple-400 to-red-500 bg-clip-text">Skills</span>
+          <h2 className="text-5xl md:text-6xl font-light text-white mb-6 tracking-wide">
+            Skills
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-red-500 mx-auto rounded-full"></div>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            A comprehensive overview of my technical expertise and proficiency levels
-          </p>
+          <div className="w-24 h-px bg-[#cc8899] mx-auto"></div>
         </motion.div>
 
+        {/* Skills Grid - 4 Items */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              className="bg-black/90 p-6 rounded-lg border border-purple-500/50 card-hover spiritual-energy"
-              style={{ 
-                boxShadow: '0 0 25px rgba(139, 69, 193, 0.3), 0 0 50px rgba(220, 38, 38, 0.1)' 
-              }}
-            >
-              <div className="flex items-center mb-6">
-                <category.icon className="text-2xl mr-3" style={{ color: '#8b45c1' }} />
-                <h3 className="text-xl font-semibold">{category.title}</h3>
-              </div>
-              
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) }}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center">
-                        <skill.icon className="text-sm mr-2" style={{ color: '#8b45c1' }} />
-                        <span className="text-sm font-medium">{skill.name}</span>
-                      </div>
-                      <span className="text-xs text-gray-400">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-gray-800 rounded-full h-2 border" style={{ borderColor: 'rgba(139, 69, 193, 0.3)' }}>
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: (categoryIndex * 0.1) + (skillIndex * 0.05) + 0.3 }}
-                        className="h-2 rounded-full shadow-lg"
-                        style={{
-                          background: 'linear-gradient(90deg, #8b45c1 0%, #9333ea 50%, #dc2626 100%)',
-                          boxShadow: '0 0 8px rgba(139, 69, 193, 0.6)'
-                        }}
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+          {skills.map((skill, index) => (
+            <SkillCard key={index} skill={skill} index={index} />
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16"
-        >
-          <div className="rounded-lg p-8 border"
-            style={{
-              background: 'linear-gradient(135deg, rgba(139, 69, 193, 0.15) 0%, rgba(220, 38, 38, 0.1) 100%)',
-              borderColor: 'rgba(139, 69, 193, 0.4)',
-              boxShadow: '0 0 30px rgba(139, 69, 193, 0.2)'
-            }}
-          >
-            <h3 className="text-2xl font-semibold mb-6 text-center text-transparent bg-gradient-to-r from-purple-400 to-red-400 bg-clip-text">
-              Currently Learning & Exploring
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6 text-center">
-              <div className="p-4 rounded-lg bg-black/70 border" style={{ borderColor: 'rgba(139, 69, 193, 0.3)' }}>
-                <h4 className="text-lg font-medium mb-2" style={{ color: '#8b45c1' }}>Advanced C++</h4>
-                <p className="text-white text-sm">Template metaprogramming, concurrency, and performance optimization</p>
-              </div>
-              <div className="p-4 rounded-lg bg-black/70 border" style={{ borderColor: 'rgba(139, 69, 193, 0.3)' }}>
-                <h4 className="text-lg font-medium mb-2" style={{ color: '#8b45c1' }}>Container Orchestration</h4>
-                <p className="text-white text-sm">Kubernetes, Docker Swarm, and microservices architecture</p>
-              </div>
-              <div className="p-4 rounded-lg bg-black/70 border" style={{ borderColor: 'rgba(139, 69, 193, 0.3)' }}>
-                <h4 className="text-lg font-medium mb-2" style={{ color: '#8b45c1' }}>System Design</h4>
-                <p className="text-white text-sm">Distributed systems, load balancing, and scalability patterns</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
+  );
+};
+
+interface SkillCardProps {
+  skill: typeof skills[0];
+  index: number;
+}
+
+const SkillCard: React.FC<SkillCardProps> = ({ skill, index }) => {
+  const radius = 60;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (skill.level / 100) * circumference;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
+      whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+      viewport={{ once: true }}
+      transition={{ 
+        duration: 0.8, 
+        delay: index * 0.15,
+        type: "spring",
+        stiffness: 100
+      }}
+      whileHover={{ 
+        scale: 1.05,
+        rotateY: 15,
+        rotateX: 5,
+      }}
+      className="group relative"
+      style={{ 
+        perspective: '1000px',
+        transformStyle: 'preserve-3d'
+      }}
+    >
+      <div className="relative bg-black/40 backdrop-blur-sm border border-gray-800 hover:border-[#cc8899] transition-all duration-500 p-8 rounded-lg"
+        style={{ 
+          transformStyle: 'preserve-3d',
+        }}
+      >
+        {/* 3D Circle */}
+        <div className="flex justify-center mb-6">
+          <div className="relative w-32 h-32">
+            {/* SVG Circle */}
+            <svg className="transform -rotate-90 w-full h-full" style={{ filter: 'drop-shadow(0 0 10px rgba(204, 136, 153, 0.3))' }}>
+              <circle
+                cx="64"
+                cy="64"
+                r={radius}
+                stroke="currentColor"
+                strokeWidth="6"
+                fill="none"
+                className="text-gray-800"
+              />
+              <motion.circle
+                cx="64"
+                cy="64"
+                r={radius}
+                stroke={skill.color}
+                strokeWidth="6"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ strokeDashoffset: circumference }}
+                whileInView={{ strokeDashoffset: strokeDashoffset }}
+                viewport={{ once: true }}
+                transition={{ duration: 2, delay: index * 0.15 + 0.5, ease: "easeOut" }}
+                style={{
+                  strokeDasharray: circumference,
+                  filter: 'drop-shadow(0 0 8px rgba(204, 136, 153, 0.6))'
+                }}
+              />
+            </svg>
+            
+            {/* Icon in center */}
+            <motion.div 
+              className="absolute inset-0 flex items-center justify-center text-[#cc8899] text-4xl"
+              whileHover={{ scale: 1.2, rotate: 10 }}
+              transition={{ duration: 0.3 }}
+            >
+              {skill.icon}
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Skill Name */}
+        <h3 className="text-xl font-light text-white text-center mb-2 tracking-wide">
+          {skill.name}
+        </h3>
+        
+        {/* Percentage */}
+        <p className="text-[#cc8899] text-center text-lg font-light">
+          {skill.level}%
+        </p>
+
+        {/* Hover glow */}
+        <div className="absolute inset-0 bg-[#cc8899]/0 group-hover:bg-[#cc8899]/5 transition-all duration-500 rounded-lg pointer-events-none"></div>
+      </div>
+    </motion.div>
   );
 };
 

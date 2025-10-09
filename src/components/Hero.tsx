@@ -1,241 +1,139 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCode } from 'react-icons/fa';
-
+import { FaArrowDown } from 'react-icons/fa';
 
 const Hero: React.FC = () => {
   return (
-    <section 
-      id="home" 
-      className="h-screen flex items-center justify-center pt-20 px-4 relative"
-    >
-      <div className="max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="home" className="min-h-screen flex items-center justify-center px-6 relative">
+      <div className="max-w-6xl mx-auto w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left Side - Main Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            className="space-y-8"
           >
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-accent text-lg mb-4 font-mono"
-            >
-              Hi, my name is
-            </motion.p>
-            
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-4xl lg:text-5xl font-medium mb-4"
-            >
-              <span className="text-white font-normal">Abdelbassat </span>
-              <span className="gradient-text font-semibold">Quaoubai</span>
-            </motion.h1>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="text-2xl lg:text-4xl text-gray-400 mb-6 font-mono"
-            >
-              Backend Developer & 1337 Student
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="text-red-400 text-lg max-w-2xl mb-8 leading-relaxed font-serif"
-              style={{
-                fontFamily: 'Georgia, "Times New Roman", serif',
-                fontWeight: '400',
-                letterSpacing: '0.5px',
-                textShadow: '0 0 10px rgba(255, 165, 0, 0.3)'
-              }}
-            >
-              I'm a passionate backend developer studying at 1337 (42 Network). 
-              I specialize in creating robust server-side applications with C++, 
-              Docker containers, and system programming. Currently working on 
-              innovative projects including web servers, containerization, and 
-              interactive applications.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="flex flex-wrap gap-4"
-            >
-              <motion.a
-                href="#projects"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center px-8 py-3 bg-accent text-white rounded-lg font-semibold hover:bg-blue-600 transition-colors duration-300"
-              >
-                <FaCode className="mr-2" />
-                View My Work
-              </motion.a>
-
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center px-8 py-3 reiatsu-button text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300"
-              >
-                Get In Touch
-              </motion.a>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative"
-          >
-            <div className="relative">
-              {/* Floating Code Cards */}
-              <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                <motion.div
-                  animate={{ 
-                    y: [0, -10, 0],
-                    rotate: [0, 2, 0]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: 0
-                  }}
-                  className="bg-primary border border-accent/30 rounded-lg p-4 backdrop-blur-sm"
-                >
-                  <div className="text-accent text-2xl mb-2">⚡</div>
-                  <div className="text-sm text-white font-mono">C++</div>
-                  <div className="text-xs text-muted">System Programming</div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ 
-                    y: [0, -15, 0],
-                    rotate: [0, -2, 0]
-                  }}
-                  transition={{ 
-                    duration: 3.5, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                  className="bg-primary border border-highlight/30 rounded-lg p-4 backdrop-blur-sm"
-                >
-                  <div className="text-highlight text-2xl mb-2">🐳</div>
-                  <div className="text-sm text-white font-mono">Docker</div>
-                  <div className="text-xs text-muted">Containers</div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ 
-                    y: [0, -12, 0],
-                    rotate: [0, 1.5, 0]
-                  }}
-                  transition={{ 
-                    duration: 3.8, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                  className="bg-primary border border-zanpakuto/30 rounded-lg p-4 backdrop-blur-sm"
-                >
-                  <div className="text-zanpakuto text-2xl mb-2">🌐</div>
-                  <div className="text-sm text-white font-mono">HTTP</div>
-                  <div className="text-xs text-muted">Web Servers</div>
-                </motion.div>
-
-                <motion.div
-                  animate={{ 
-                    y: [0, -8, 0],
-                    rotate: [0, -1.5, 0]
-                  }}
-                  transition={{ 
-                    duration: 4.2, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: 1.5
-                  }}
-                  className="bg-primary border border-danger/30 rounded-lg p-4 backdrop-blur-sm"
-                >
-                  <div className="text-danger text-2xl mb-2">🐧</div>
-                  <div className="text-sm text-white font-mono">Linux</div>
-                  <div className="text-xs text-muted">System Admin</div>
-                </motion.div>
-              </div>
-
-              {/* Central Energy Orb */}
-              <motion.div
-                animate={{ 
-                  scale: [1, 1.1, 1],
-                  opacity: [0.7, 1, 0.7]
-                }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity, 
-                  ease: "easeInOut"
-                }}
-                className="absolute inset-0 flex items-center justify-center pointer-events-none"
-              >
-                <div className="w-32 h-32 bg-gradient-to-r from-accent via-highlight to-zanpakuto rounded-full opacity-20 blur-2xl"></div>
-              </motion.div>
-
-              {/* Floating Particles */}
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{
-                    y: [-20, -40, -20],
-                    x: [0, Math.sin(i) * 20, 0],
-                    opacity: [0.3, 0.8, 0.3]
-                  }}
-                  transition={{
-                    duration: 3 + i * 0.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.8
-                  }}
-                  className="absolute w-2 h-2 bg-accent rounded-full"
-                  style={{
-                    left: `${20 + i * 12}%`,
-                    top: `${30 + (i % 2) * 40}%`
-                  }}
-                />
-              ))}
-
-              {/* Stats Display */}
+            <div className="space-y-4">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: 0.8 }}
-                className="mt-8 bg-secondary/80 backdrop-blur-sm rounded-lg p-6 border border-accent/20 max-w-md mx-auto"
+                transition={{ delay: 0.2, duration: 0.6 }}
               >
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div>
-                    <div className="text-2xl font-bold text-accent">3+</div>
-                    <div className="text-sm text-muted">Projects</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-zanpakuto">1337</div>
-                    <div className="text-sm text-muted">School</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-danger">24/7</div>
-                    <div className="text-sm text-muted">Coding</div>
-                  </div>
-                </div>
+                <p className="text-[#cc8899] text-sm uppercase tracking-[0.3em] font-light mb-4">
+                  Backend Developer
+                </p>
+                <h1 className="text-5xl md:text-7xl font-light text-white leading-tight mb-6">
+                  Abdelbassat
+                  <br />
+                  <span className="text-[#cc8899]">Quaoubai</span>
+                </h1>
               </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="text-gray-400 text-lg leading-relaxed max-w-lg"
+              >
+                Building scalable backend systems with clean architecture and elegant code.
+              </motion.p>
+            </div>
+
+            {/* 1337 Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+              className="inline-flex items-center border border-[#cc8899]/30 px-6 py-3 space-x-3 hover:border-[#cc8899] transition-colors duration-300"
+            >
+              <div className="w-2 h-2 bg-[#cc8899] rounded-full animate-pulse"></div>
+              <span className="text-white text-sm">Student at</span>
+              <span className="text-[#cc8899] text-xl font-light tracking-wider">1337</span>
+              <span className="text-gray-500 text-xs">/ 42 Network</span>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="flex flex-wrap gap-4 pt-4"
+            >
+              <a
+                href="#projects"
+                className="group relative px-8 py-4 bg-[#cc8899] text-white overflow-hidden"
+              >
+                <span className="relative z-10 uppercase text-sm tracking-widest font-light">
+                  View Projects
+                </span>
+                <div className="absolute inset-0 bg-white transform origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
+                <span className="absolute inset-0 flex items-center justify-center text-black opacity-0 group-hover:opacity-100 uppercase text-sm tracking-widest font-light transition-opacity duration-300">
+                  View Projects
+                </span>
+              </a>
+              
+              <a
+                href="#contact"
+                className="px-8 py-4 border border-[#cc8899]/30 text-gray-400 hover:border-[#cc8899] hover:text-white transition-all duration-300 uppercase text-sm tracking-widest font-light"
+              >
+                Contact
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Side - Info Cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="space-y-6"
+          >
+            {/* About 1337 */}
+            <div className="border border-gray-800 p-6 hover:border-[#cc8899]/50 transition-all duration-300 group">
+              <h3 className="text-white text-lg font-light mb-3 tracking-wide">
+                About 1337
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Peer-learning school with project-based education. Part of the 42 Network.
+              </p>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-3 gap-4">
+              <div className="border border-gray-800 p-4 text-center hover:border-[#cc8899]/50 transition-colors duration-300">
+                <div className="text-2xl text-[#cc8899] font-light mb-1">5+</div>
+                <div className="text-xs text-gray-600 uppercase tracking-wider">Projects</div>
+              </div>
+              <div className="border border-gray-800 p-4 text-center hover:border-[#cc8899]/50 transition-colors duration-300">
+                <div className="text-2xl text-[#cc8899] font-light mb-1">24/7</div>
+                <div className="text-xs text-gray-600 uppercase tracking-wider">Learning</div>
+              </div>
+              <div className="border border-gray-800 p-4 text-center hover:border-[#cc8899]/50 transition-colors duration-300">
+                <div className="text-2xl text-[#cc8899] font-light mb-1">100%</div>
+                <div className="text-xs text-gray-600 uppercase tracking-wider">Hands-on</div>
+              </div>
             </div>
           </motion.div>
+
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        >
+          <a
+            href="#projects"
+            className="flex flex-col items-center space-y-2 text-gray-700 hover:text-[#cc8899] transition-colors duration-300"
+          >
+            <span className="text-xs uppercase tracking-widest">Scroll</span>
+            <FaArrowDown className="animate-bounce" size={16} />
+          </a>
+        </motion.div>
       </div>
     </section>
   );
