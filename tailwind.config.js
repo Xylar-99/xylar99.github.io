@@ -23,6 +23,8 @@ module.exports = {
         'reiatsu-gradient': 'linear-gradient(45deg, #dc2626, #8b45c1)',
       },
       fontFamily: {
+        'sans': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        'serif': ['Playfair Display', 'Georgia', 'serif'],
         'mono': ['JetBrains Mono', 'Monaco', 'Consolas', 'monospace'],
       },
     },

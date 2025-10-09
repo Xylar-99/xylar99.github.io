@@ -3,214 +3,198 @@ import { motion } from 'framer-motion';
 import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
 
 
+const contactMethods = [
+  {
+    icon: <FaEnvelope />,
+    label: "Email",
+    value: "abdelbassat.quaoubai99@gmail.com",
+    link: "mailto:abdelbassat.quaoubai99@gmail.com",
+  },
+  {
+    icon: <FaGithub />,
+    label: "GitHub",
+    value: "github.com/Xylar-99",
+    link: "https://github.com/Xylar-99",
+  },
+  {
+    icon: <FaLinkedin />,
+    label: "LinkedIn",
+    value: "Connect with me",
+    link: "https://linkedin.com/in/abdelbassat-quaoubai",
+  },
+  {
+    icon: <FaMapMarkerAlt />,
+    label: "Location",
+    value: "Morocco",
+    link: null,
+  },
+];
+
 const Contact: React.FC = () => {
-  const contactInfo = [
-    {
-      icon: FaEnvelope,
-      label: "Email",
-      value: "abdelbassat.quaoubai99@gmail.com",
-      link: "mailto:abdelbassat.quaoubai99@gmail.com",
-      color: "#8b45c1"
-    },
-    {
-      icon: FaLinkedin,
-      label: "LinkedIn",
-      value: "Connect with me",
-      link: "https://linkedin.com/in/abdelbassat-quaoubai",
-      color: "#dc2626"
-    },
-    {
-      icon: FaGithub,
-      label: "GitHub",
-      value: "View my repositories",
-      link: "https://github.com/Xylar-99",
-      color: "#9333ea"
-    },
-    {
-      icon: FaMapMarkerAlt,
-      label: "Location",
-      value: "Morocco",
-      link: null,
-      color: "#7c3aed"
-    }
-  ];
-
   return (
-    <section id="contact" className="py-20 px-4 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative">
-        {/* Aizen's Spiritual Energy Background */}
-        <div className="absolute inset-0 pointer-events-none">
-          {/* Large mystical circle */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-10">
-            <div 
-              className="w-96 h-96 border-2 rounded-full"
-              style={{
-                borderColor: '#8b45c1',
-                animation: 'spin 30s linear infinite reverse'
-              }}
-            >
-              <div 
-                className="absolute inset-4 border border-red-500 rounded-full opacity-60"
-                style={{ animation: 'spin 20s linear infinite' }}
-              >
-                <div 
-                  className="absolute inset-4 border border-purple-400 rounded-full opacity-80"
-                  style={{ animation: 'spin 15s linear infinite reverse' }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
+    <section id="contact" className="py-32 px-4 relative">
+      <div className="max-w-6xl mx-auto">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16 relative z-10"
+          transition={{ duration: 0.8 }}
+          className="mb-20"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Get In <span className="text-transparent bg-gradient-to-r from-purple-400 to-red-500 bg-clip-text">Touch</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-red-500 mx-auto rounded-full"></div>
-          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            Connect with me through the spiritual energy of professional networks
+          <div className="flex items-center justify-center mb-4">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#cc8899]"></div>
+            <span className="mx-6 text-[#cc8899] text-sm tracking-[0.3em] uppercase font-light">Contact</span>
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#cc8899]"></div>
+          </div>
+          <p className="text-center text-gray-400 text-lg font-light">
+            Let us create something extraordinary together
           </p>
         </motion.div>
 
-        {/* Aizen's Ego Hands with Circles Design */}
-        <div className="relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-            {contactInfo.map((info, index) => (
-              <motion.div
-                key={info.label}
-                initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
-                whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: index * 0.2,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                className="relative group"
-              >
-                {/* Outer mystical circle */}
-                <div 
-                  className="absolute inset-0 rounded-full border opacity-20 group-hover:opacity-60 transition-all duration-500"
-                  style={{
-                    borderColor: info.color,
-                    animation: `spin ${12 + index * 2}s linear infinite`,
-                    transform: 'scale(1.1)'
-                  }}
-                />
-                
-                {/* Middle circle */}
-                <div 
-                  className="absolute inset-1 rounded-full border opacity-30 group-hover:opacity-80 transition-all duration-500"
-                  style={{
-                    borderColor: info.color,
-                    animation: `spin ${8 + index}s linear infinite reverse`,
-                    transform: 'scale(1.05)'
-                  }}
-                />
-
-                {/* Main contact circle - Aizen's hand gesture style */}
-                <motion.div
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotateZ: 5,
-                    boxShadow: `0 0 25px ${info.color}40`
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className="relative w-20 h-20 mx-auto rounded-full border flex flex-col items-center justify-center cursor-pointer transition-all duration-300"
-                  style={{
-                    borderColor: info.color,
-                    background: `radial-gradient(circle, ${info.color}10, transparent 70%)`,
-                    boxShadow: `0 0 15px ${info.color}30`
-                  }}
-                  onClick={() => info.link && window.open(info.link, '_blank')}
-                >
-                  {/* Inner spiritual energy */}
-                  <div 
-                    className="absolute inset-2 rounded-full border opacity-50"
-                    style={{
-                      borderColor: info.color,
-                      background: `radial-gradient(circle, ${info.color}15, transparent)`
-                    }}
-                  />
-                  
-                  {/* Icon */}
-                  <info.icon 
-                    className="text-lg transition-all duration-300 group-hover:scale-110" 
-                    style={{ color: info.color }}
-                  />
-
-                  {/* Aizen's energy particles */}
-                  <div className="absolute inset-0">
-                    {[...Array(2)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-0.5 h-0.5 rounded-full opacity-60"
-                        style={{
-                          backgroundColor: info.color,
-                          top: `${25 + i * 25}%`,
-                          left: `${15 + i * 40}%`,
-                          animation: `float ${3 + i}s ease-in-out infinite`,
-                          animationDelay: `${i * 0.5}s`
-                        }}
-                      />
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Contact info below circle */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.5 + index * 0.1 }}
-                  className="text-center mt-3"
-                >
-                  <h4 className="text-xs font-semibold mb-1" style={{ color: info.color }}>
-                    {info.label}
-                  </h4>
-                  {info.link ? (
-                    <a
-                      href={info.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-gray-400 hover:text-white transition-colors duration-300 block"
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.color = info.color;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.color = '#9ca3af';
-                      }}
-                    >
-                      {info.value}
-                    </a>
-                  ) : (
-                    <p className="text-xs text-gray-400">{info.value}</p>
-                  )}
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Central Aizen's Power Symbol */}
+        <div className="grid lg:grid-cols-2 gap-16">
+          {/* Left - Contact Info */}
           <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, delay: 1 }}
-            className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
           >
-            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-red-500 opacity-50 animate-pulse" />
-            <div className="absolute inset-0 w-3 h-3 rounded-full border border-purple-400 animate-ping opacity-30" />
+            <div className="border-l-2 border-[#cc8899] pl-6">
+              <p className="text-gray-400 text-lg leading-relaxed font-light">
+                Whether it's crafting elegant backend systems, architecting scalable solutions, 
+                or collaborating on ambitious projects—I am always open to new opportunities.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {contactMethods.map((method, index) => (
+                <ContactCard key={index} method={method} index={index} />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="border border-gray-800 p-8 md:p-10 relative group hover:border-[#cc8899] transition-all duration-500">
+              {/* Corner accents */}
+              <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#cc8899] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#cc8899] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-[#cc8899] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[#cc8899] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              <form className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-[#cc8899] text-sm tracking-wider mb-3 font-light uppercase">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="w-full px-0 py-3 bg-transparent border-b border-gray-800 focus:border-[#cc8899] text-white transition-all duration-300 outline-none font-light"
+                    placeholder="Your name"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="email" className="block text-[#cc8899] text-sm tracking-wider mb-3 font-light uppercase">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className="w-full px-0 py-3 bg-transparent border-b border-gray-800 focus:border-[#cc8899] text-white transition-all duration-300 outline-none font-light"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-[#cc8899] text-sm tracking-wider mb-3 font-light uppercase">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    className="w-full px-0 py-3 bg-transparent border-b border-gray-800 focus:border-[#cc8899] text-white transition-all duration-300 resize-none outline-none font-light"
+                    placeholder="Your message..."
+                  ></textarea>
+                </div>
+                
+                <button
+                  type="submit"
+                  className="w-full py-3 border border-[#cc8899] text-[#cc8899] hover:bg-[#cc8899] hover:text-white transition-all duration-300 tracking-widest text-sm uppercase font-light"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
           </motion.div>
         </div>
+
+        {/* Footer */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-32 text-center"
+        >
+          <div className="h-px bg-gradient-to-r from-transparent via-[#cc8899] to-transparent mb-8"></div>
+          <p className="text-gray-500 text-sm tracking-wider font-light">
+            "Admiration is the emotion furthest from understanding."
+          </p>
+          <p className="text-gray-600 text-xs mt-2">
+            — Sōsuke Aizen
+          </p>
+          <p className="text-gray-700 text-xs mt-6">
+            © 2025 Abdelbassat Quaoubai
+          </p>
+        </motion.div>
       </div>
     </section>
+  );
+};
+
+interface ContactCardProps {
+  method: typeof contactMethods[0];
+  index: number;
+}
+
+const ContactCard: React.FC<ContactCardProps> = ({ method, index }) => {
+  const Component = method.link ? 'a' : 'div';
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+    >
+      <Component
+        {...(method.link ? { href: method.link, target: '_blank', rel: 'noopener noreferrer' } : {})}
+        className="group flex items-center p-4 border border-gray-800 hover:border-[#cc8899] transition-all duration-300"
+      >
+        <div className="text-[#cc8899] text-xl mr-4 group-hover:scale-110 transition-transform duration-300">
+          {method.icon}
+        </div>
+        <div>
+          <p className="text-gray-500 text-xs uppercase tracking-wider mb-1 font-light">{method.label}</p>
+          <p className="text-white font-light">{method.value}</p>
+        </div>
+        
+        {/* Animated line */}
+        <div className="ml-auto w-0 h-px bg-[#cc8899] group-hover:w-8 transition-all duration-300"></div>
+      </Component>
+    </motion.div>
   );
 };
 
