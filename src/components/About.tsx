@@ -62,7 +62,10 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="group relative border border-gray-800 hover:border-[#cc8899] p-8 transition-all duration-500"
+              className="group relative border p-8 transition-all duration-500"
+              style={{ borderColor: '#3a3939' }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = '#cc8899'}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = '#3a3939'}
             >
               <div className="absolute top-0 left-0 w-full h-px bg-[#cc8899] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
               
@@ -78,7 +81,10 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="group relative border border-gray-800 hover:border-[#cc8899] p-8 transition-all duration-500"
+              className="group relative border p-8 transition-all duration-500"
+              style={{ borderColor: '#3a3939' }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = '#cc8899'}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = '#3a3939'}
             >
               <div className="absolute top-0 left-0 w-full h-px bg-[#cc8899] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
               
@@ -94,7 +100,10 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="group relative border border-gray-800 hover:border-[#cc8899] p-8 transition-all duration-500"
+              className="group relative border p-8 transition-all duration-500"
+              style={{ borderColor: '#3a3939' }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = '#cc8899'}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = '#3a3939'}
             >
               <div className="absolute top-0 left-0 w-full h-px bg-[#cc8899] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
               

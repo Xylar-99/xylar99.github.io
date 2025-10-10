@@ -7,7 +7,7 @@ import Contact from './components/Contact';
 
 const App: React.FC = () => {
   return (
-    <div className="bg-black min-h-screen text-white relative overflow-hidden">
+    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#282727' }}>
       {/* 3D Animated Background Circles */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         {/* Large floating circles with 3D effect */}
@@ -33,7 +33,9 @@ const App: React.FC = () => {
 
       {/* Subtle gradient overlay */}
       <div className="fixed inset-0 opacity-30 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-900/50 via-transparent to-gray-900/50"></div>
+        <div className="absolute inset-0" style={{ 
+          background: 'linear-gradient(to bottom, rgba(40, 39, 39, 0.5), transparent, rgba(40, 39, 39, 0.5))' 
+        }}></div>
       </div>
 
       <div className="relative z-10">
@@ -76,7 +78,7 @@ const App: React.FC = () => {
         }
 
         ::-webkit-scrollbar-track {
-          background: #000000;
+          background: #282727;
         }
 
         ::-webkit-scrollbar-thumb {

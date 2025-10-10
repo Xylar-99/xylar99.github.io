@@ -93,7 +93,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
 		whileInView={{ opacity: 1, y: 0 }}
 		viewport={{ once: true }}
 		transition={{ duration: 0.8, delay: index * 0.1 }}
-		className="group relative border border-gray-800 hover:border-[#cc8899] transition-all duration-500 p-8 md:p-12"
+		className="group relative border hover:border-[#cc8899] transition-all duration-500 p-8 md:p-12"
+		style={{ borderColor: '#3a3939' }}
 	>
 		{/* Corner decorations */}
 		<div className="absolute top-0 left-0 w-6 h-6 border-t border-l border-[#cc8899] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -136,7 +137,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => (
 				{project.technologies.map(tech => (
 					<span
 						key={tech}
-						className="text-gray-400 text-sm font-light tracking-wider border border-gray-800 px-4 py-1 hover:border-[#cc8899] hover:text-[#cc8899] transition-all duration-300"
+						className="text-gray-400 text-sm font-light tracking-wider border px-4 py-1 hover:border-[#cc8899] hover:text-[#cc8899] transition-all duration-300"
+						style={{ borderColor: '#3a3939' }}
 					>
 						{tech}
 					</span>
