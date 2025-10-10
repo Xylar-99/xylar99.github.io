@@ -160,11 +160,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ skill, index }) => {
         transformStyle: 'preserve-3d'
       }}
     >
-      <div className="relative bg-black/40 backdrop-blur-sm border border-gray-800 hover:border-[#cc8899] transition-all duration-500 p-8 rounded-lg"
-        style={{ 
-          transformStyle: 'preserve-3d',
-        }}
-      >
+      <div className="relative backdrop-blur-sm border hover:border-[#cc8899] transition-all duration-500 p-8 rounded-lg" style={{ backgroundColor: 'rgba(40, 39, 39, 0.4)', borderColor: '#3a3939' }}>
         {/* 3D Circle */}
         <div className="flex justify-center mb-6">
           <div className="relative w-32 h-32">
@@ -177,7 +173,8 @@ const SkillCard: React.FC<SkillCardProps> = ({ skill, index }) => {
                 stroke="currentColor"
                 strokeWidth="6"
                 fill="none"
-                className="text-gray-800"
+                className="text-gray-700"
+                style={{ color: '#3a3939' }}
               />
               <motion.circle
                 cx="64"

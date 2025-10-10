@@ -82,7 +82,7 @@ const Contact: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="border border-gray-800 p-8 md:p-10 relative group hover:border-[#cc8899] transition-all duration-500">
+            <div className="border p-8 md:p-10 relative group hover:border-[#cc8899] transition-all duration-500" style={{ borderColor: '#3a3939' }}>
               {/* Corner accents */}
               <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#cc8899] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-[#cc8899] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -98,7 +98,8 @@ const Contact: React.FC = () => {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-0 py-3 bg-transparent border-b border-gray-800 focus:border-[#cc8899] text-white transition-all duration-300 outline-none font-light"
+                    className="w-full px-0 py-3 bg-transparent border-b focus:border-[#cc8899] text-white transition-all duration-300 outline-none font-light"
+                    style={{ borderColor: '#3a3939' }}
                     placeholder="Your name"
                   />
                 </div>
@@ -111,7 +112,8 @@ const Contact: React.FC = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-0 py-3 bg-transparent border-b border-gray-800 focus:border-[#cc8899] text-white transition-all duration-300 outline-none font-light"
+                    className="w-full px-0 py-3 bg-transparent border-b focus:border-[#cc8899] text-white transition-all duration-300 outline-none font-light"
+                    style={{ borderColor: '#3a3939' }}
                     placeholder="your@email.com"
                   />
                 </div>
@@ -124,7 +126,8 @@ const Contact: React.FC = () => {
                     id="message"
                     name="message"
                     rows={5}
-                    className="w-full px-0 py-3 bg-transparent border-b border-gray-800 focus:border-[#cc8899] text-white transition-all duration-300 resize-none outline-none font-light"
+                    className="w-full px-0 py-3 bg-transparent border-b focus:border-[#cc8899] text-white transition-all duration-300 resize-none outline-none font-light"
+                    style={{ borderColor: '#3a3939' }}
                     placeholder="Your message..."
                   ></textarea>
                 </div>
@@ -181,7 +184,8 @@ const ContactCard: React.FC<ContactCardProps> = ({ method, index }) => {
     >
       <Component
         {...(method.link ? { href: method.link, target: '_blank', rel: 'noopener noreferrer' } : {})}
-        className="group flex items-center p-4 border border-gray-800 hover:border-[#cc8899] transition-all duration-300"
+        className="group flex items-center p-4 border hover:border-[#cc8899] transition-all duration-300"
+        style={{ borderColor: '#3a3939' }}
       >
         <div className="text-[#cc8899] text-xl mr-4 group-hover:scale-110 transition-transform duration-300">
           {method.icon}

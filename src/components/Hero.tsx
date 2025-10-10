@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
                   View Projects
                 </span>
                 <div className="absolute inset-0 bg-white transform origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></div>
-                <span className="absolute inset-0 flex items-center justify-center text-black opacity-0 group-hover:opacity-100 uppercase text-sm tracking-widest font-light transition-opacity duration-300">
+                <span className="absolute inset-0 flex items-center justify-center uppercase text-sm tracking-widest font-light transition-opacity duration-300 opacity-0 group-hover:opacity-100" style={{ color: '#282727' }}>
                   View Projects
                 </span>
               </a>
@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
             className="space-y-6"
           >
             {/* About 1337 */}
-            <div className="border border-gray-800 p-6 hover:border-[#cc8899]/50 transition-all duration-300 group">
+            <div className="border p-6 hover:border-[#cc8899]/50 transition-all duration-300 group" style={{ borderColor: '#3a3939' }}>
               <h3 className="text-white text-lg font-light mb-3 tracking-wide">
                 About 1337
               </h3>
@@ -102,15 +102,15 @@ const Hero: React.FC = () => {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-3 gap-4">
-              <div className="border border-gray-800 p-4 text-center hover:border-[#cc8899]/50 transition-colors duration-300">
+              <div className="border p-4 text-center hover:border-[#cc8899]/50 transition-colors duration-300" style={{ borderColor: '#3a3939' }}>
                 <div className="text-2xl text-[#cc8899] font-light mb-1">5+</div>
                 <div className="text-xs text-gray-600 uppercase tracking-wider">Projects</div>
               </div>
-              <div className="border border-gray-800 p-4 text-center hover:border-[#cc8899]/50 transition-colors duration-300">
+              <div className="border p-4 text-center hover:border-[#cc8899]/50 transition-colors duration-300" style={{ borderColor: '#3a3939' }}>
                 <div className="text-2xl text-[#cc8899] font-light mb-1">24/7</div>
                 <div className="text-xs text-gray-600 uppercase tracking-wider">Learning</div>
               </div>
-              <div className="border border-gray-800 p-4 text-center hover:border-[#cc8899]/50 transition-colors duration-300">
+              <div className="border p-4 text-center hover:border-[#cc8899]/50 transition-colors duration-300" style={{ borderColor: '#3a3939' }}>
                 <div className="text-2xl text-[#cc8899] font-light mb-1">100%</div>
                 <div className="text-xs text-gray-600 uppercase tracking-wider">Hands-on</div>
               </div>

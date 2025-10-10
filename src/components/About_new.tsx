@@ -116,8 +116,8 @@ interface InfoCardProps {
 
 const InfoCard: React.FC<InfoCardProps> = ({ icon, title, text, description, index }) => (
   <div 
-    className="group relative bg-gray-900 p-6 rounded-lg border-2 transition-all duration-300 overflow-hidden"
-    style={{ borderColor: '#374151' }}
+    className="group relative p-6 rounded-lg border-2 transition-all duration-300 overflow-hidden"
+    style={{ borderColor: '#374151', backgroundColor: '#282727' }}
     onMouseEnter={(e) => {
       e.currentTarget.style.borderColor = '#cc8899';
     }}
