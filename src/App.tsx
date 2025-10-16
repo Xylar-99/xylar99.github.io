@@ -1,95 +1,57 @@
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
-import Contact from './components/Contact';
+import './index.css';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#282727' }}>
-      {/* 3D Animated Background Circles */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        {/* Large floating circles with 3D effect */}
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={`circle-large-${i}`}
-            className="absolute rounded-full animate-float-3d"
-            style={{
-              width: `${200 + Math.random() * 300}px`,
-              height: `${200 + Math.random() * 300}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${-20 + Math.random() * 40}%`,
-              background: i % 2 === 0 
-                ? 'radial-gradient(circle, rgba(204, 136, 153, 0.08) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(139, 69, 193, 0.08) 0%, transparent 70%)',
-              animationDelay: `${i * 2}s`,
-              animationDuration: `${20 + i * 3}s`,
-              filter: 'blur(60px)',
-            }}
-          ></div>
-        ))}
+    <div className="app">
+      {/* Background Elements */}
+      <div className="bg-circles">
+        <div className="circle circle-1"></div>
+        <div className="circle circle-2"></div>
+        <div className="circle circle-3"></div>
       </div>
 
-      {/* Subtle gradient overlay */}
-      <div className="fixed inset-0 opacity-30 pointer-events-none">
-        <div className="absolute inset-0" style={{ 
-          background: 'linear-gradient(to bottom, rgba(40, 39, 39, 0.5), transparent, rgba(40, 39, 39, 0.5))' 
-        }}></div>
-      </div>
+      {/* Main Content */}
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+      </main>
 
-      <div className="relative z-10">
-        <Header />
-        <main>
-          <Hero />
-          <Projects />
-          <Skills />
-          <Contact />
-        </main>
-      </div>
+      {/* Footer */}
+      <footer className="footer-simple">
+        <div className="footer-simple-content">
+          <img src="https://github.com/Xylar-99.png" alt="AQ GitHub Logo" className="footer-simple-logo-img" />
+          <p className="footer-simple-tagline">
+            Backend Developer & 1337 Student passionate about creating efficient and scalable solutions.
+          </p>
+          <div className="footer-simple-social">
+            <a href="https://github.com/Xylar-99" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/abdelbassat-quaoubai" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
+            <a href="mailto:abdelbassat.quaoubai99@gmail.com"><i className="fas fa-envelope"></i></a>
+          </div>
+          <div className="footer-simple-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+          </div>
+          <div className="footer-simple-copy">
+            © 2024 Abdelbassat Quaoubai. All rights reserved.
+          </div>
+        </div>
+      </footer>
 
-      <style>{`
-        /* 3D Float Animation */
-        @keyframes float-3d {
-          0%, 100% {
-            transform: translate3d(0, 0, 0) scale(1);
-          }
-          33% {
-            transform: translate3d(30px, -40px, 20px) scale(1.1);
-          }
-          66% {
-            transform: translate3d(-30px, 40px, -20px) scale(0.9);
-          }
-        }
-
-        .animate-float-3d {
-          animation: float-3d ease-in-out infinite;
-          transform-style: preserve-3d;
-        }
-
-        /* Smooth scrolling */
-        html {
-          scroll-behavior: smooth;
-        }
-
-        /* Hide scrollbar but keep functionality */
-        ::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-          background: #282727;
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background: #cc8899;
-          border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-          background: #d696a8;
-        }
-      `}</style>
+      {/* Scroll to Top Button */}
+      <a href="#home" className="scroll-top" id="scroll-top">
+        <i className="fas fa-arrow-up"></i>
+      </a>
     </div>
   );
 };

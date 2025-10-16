@@ -4,44 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abdelbassat Quaoubai | Backend Developer</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
-    <header class="header" id="header">
+    <header class="header">
         <nav class="nav container">
-            <div class="nav__brand">
-                <a href="#home" class="nav__logo">&lt;AQ /&gt;</a>
-            </div>
+            <a href="#home" class="nav__logo">
+                <span class="bracket">&lt;</span>AQ<span class="bracket">/&gt;</span>
+            </a>
+            
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
-                    <li class="nav__item">
-                        <a href="#home" class="nav__link">Home</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#about" class="nav__link">About</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#skills" class="nav__link">Skills</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#projects" class="nav__link">Projects</a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="#contact" class="nav__link">Contact</a>
-                    </li>
+                    <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#projects" class="nav__link">Projects</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
                 </ul>
             </div>
+
             <div class="nav__social">
-                <a href="https://github.com/Xylar-99" target="_blank" class="nav__social-link">
+                <a href="https://github.com/Xylar-99" target="_blank" class="social__link">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://linkedin.com/in/abdelbassat-quaoubai" target="_blank" class="nav__social-link">
+                <a href="https://linkedin.com/in/abdelbassat-quaoubai" target="_blank" class="social__link">
                     <i class="fab fa-linkedin"></i>
                 </a>
             </div>
+
             <div class="nav__toggle" id="nav-toggle">
                 <i class="fas fa-bars"></i>
             </div>
@@ -50,259 +43,115 @@
 
     <!-- Hero Section -->
     <section class="hero section" id="home">
-        <div class="hero__container container grid">
+        <div class="hero__container container">
             <div class="hero__content">
-                <span class="hero__subtitle">Hi, my name is</span>
+                <div class="hero__badge">
+                    <div class="pulse"></div>
+                    <span class="badge__text">Student at</span>
+                    <span class="badge__highlight">1337</span>
+                    <span class="badge__sub">/ 42 Network</span>
+                </div>
+
                 <h1 class="hero__title">
-                    <span class="hero__title-name">Abdelbassat</span><br>
-                    <span class="hero__title-surname gradient-text">Quaoubai</span>
+                    <span class="title__name">Abdelbassat</span>
+                    <span class="title__surname">Quaoubai</span>
                 </h1>
-                <h2 class="hero__description">Backend Developer & 1337 Student</h2>
-                <p class="hero__text">
-                    I'm a passionate backend developer studying at 1337 (42 Network). 
-                    I specialize in creating robust server-side applications with C++, 
-                    Docker containers, and system programming.
+
+                <p class="hero__subtitle">Backend Developer</p>
+
+                <p class="hero__description">
+                    Crafting elegant backend systems with precision and care. Specialized in C++, 
+                    Docker infrastructure, and scalable architecture through project-based learning.
                 </p>
+
                 <div class="hero__buttons">
-                    <a href="#projects" class="button button--primary">
-                        <i class="fas fa-code"></i> View My Work
+                    <a href="#projects" class="btn btn-primary">
+                        <span class="btn__text">View Projects</span>
+                        <div class="btn__overlay"></div>
                     </a>
-                    <a href="/resume.pdf" target="_blank" class="button button--ghost">
-                        <i class="fas fa-download"></i> Resume
+                    <a href="#contact" class="btn btn-secondary">
+                        Contact
                     </a>
                 </div>
             </div>
-            <div class="hero__img">
-                <div class="hero__terminal">
-                    <div class="terminal__header">
-                        <div class="terminal__buttons">
-                            <span class="terminal__button terminal__button--red"></span>
-                            <span class="terminal__button terminal__button--yellow"></span>
-                            <span class="terminal__button terminal__button--green"></span>
-                        </div>
-                        <span class="terminal__title">terminal</span>
+
+            <div class="hero__info">
+                <div class="info__card">
+                    <h3 class="info__title">About 1337</h3>
+                    <p class="info__text">Peer-learning school with project-based education. Part of the 42 Network.</p>
+                </div>
+
+                <div class="stats__grid">
+                    <div class="stat__card">
+                        <div class="stat__number">5+</div>
+                        <div class="stat__label">Projects</div>
                     </div>
-                    <div class="terminal__content">
-                        <div class="terminal__line">$ whoami</div>
-                        <div class="terminal__line terminal__line--accent">abdelbassat@1337:~$</div>
-                        <div class="terminal__line">$ cat skills.txt</div>
-                        <div class="terminal__line terminal__line--success">✓ C++ Programming</div>
-                        <div class="terminal__line terminal__line--success">✓ Docker & Containers</div>
-                        <div class="terminal__line terminal__line--success">✓ Backend Development</div>
-                        <div class="terminal__line terminal__line--success">✓ System Programming</div>
-                        <div class="terminal__line terminal__line--success">✓ Web Servers</div>
-                        <div class="terminal__line terminal__line--accent cursor">|</div>
+                    <div class="stat__card">
+                        <div class="stat__number">24/7</div>
+                        <div class="stat__label">Learning</div>
+                    </div>
+                    <div class="stat__card">
+                        <div class="stat__number">100%</div>
+                        <div class="stat__label">Hands-on</div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="scroll__indicator">
+            <a href="#projects" class="scroll__link">
+                <span class="scroll__text">Scroll</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about section" id="about">
-        <div class="about__container container grid">
+        <div class="about__container container">
             <div class="section__header">
-                <h2 class="section__title">About <span class="gradient-text">Me</span></h2>
-                <div class="section__line"></div>
-            </div>
-            
-            <div class="about__content grid">
-                <div class="about__info">
-                    <h3 class="about__subtitle">Backend Developer & System Programming Enthusiast</h3>
-                    <div class="about__description">
-                        <p>
-                            I'm <strong>Abdelbassat Quaoubai</strong>, a passionate backend developer 
-                            currently studying at <span class="text-accent">1337 (42 Network)</span>. 
-                            My journey in programming is driven by curiosity and a love for creating 
-                            efficient, scalable solutions.
-                        </p>
-                        <p>
-                            At 1337, I've developed strong foundations in <span class="text-accent">C++ programming</span>, 
-                            <span class="text-accent">system architecture</span>, and 
-                            <span class="text-accent">problem-solving methodologies</span>. 
-                            The peer-to-peer learning environment has taught me collaboration, 
-                            code review practices, and how to tackle complex challenges.
-                        </p>
-                        <p>
-                            My expertise lies in building robust backend systems, working with containerization 
-                            technologies like <span class="text-accent">Docker</span>, and creating 
-                            high-performance web servers.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="about__cards grid">
-                    <div class="about__card">
-                        <i class="fas fa-graduation-cap about__card-icon"></i>
-                        <h4 class="about__card-title">Education</h4>
-                        <p class="about__card-text">Student at 1337 (42 Network)</p>
-                        <span class="about__card-subtitle">Peer-to-peer learning</span>
-                    </div>
-                    <div class="about__card">
-                        <i class="fas fa-code about__card-icon"></i>
-                        <h4 class="about__card-title">Programming</h4>
-                        <p class="about__card-text">C++ & System Programming</p>
-                        <span class="about__card-subtitle">Performance-focused</span>
-                    </div>
-                    <div class="about__card">
-                        <i class="fas fa-server about__card-icon"></i>
-                        <h4 class="about__card-title">Backend</h4>
-                        <p class="about__card-text">Web Servers & APIs</p>
-                        <span class="about__card-subtitle">Scalable architecture</span>
-                    </div>
-                    <div class="about__card">
-                        <i class="fab fa-docker about__card-icon"></i>
-                        <h4 class="about__card-title">DevOps</h4>
-                        <p class="about__card-text">Docker & Containers</p>
-                        <span class="about__card-subtitle">Infrastructure automation</span>
-                    </div>
+                <div class="section__line">
+                    <div class="line"></div>
+                    <span class="section__tag">About</span>
+                    <div class="line"></div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section class="skills section" id="skills">
-        <div class="skills__container container">
-            <div class="section__header">
-                <h2 class="section__title">Technical <span class="gradient-text">Skills</span></h2>
-                <div class="section__line"></div>
-                <p class="section__description">A comprehensive overview of my technical expertise and proficiency levels</p>
-            </div>
+            <div class="about__content">
+                <div class="about__text">
+                    <p class="about__description">
+                        I'm <span class="highlight">Abdelbassat Quaoubai</span>, a backend developer 
+                        crafting elegant systems with precision and care.
+                    </p>
+                </div>
 
-            <div class="skills__content grid">
-                <div class="skills__group">
-                    <h3 class="skills__group-title">
-                        <i class="fab fa-cuttlefish skills__group-icon"></i>
-                        Backend & Systems
-                    </h3>
-                    <div class="skills__list">
-                        <div class="skills__item">
-                            <span class="skills__name">C++</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 90%"></div>
-                            </div>
-                            <span class="skills__number">90%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">C</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 85%"></div>
-                            </div>
-                            <span class="skills__number">85%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">System Programming</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 80%"></div>
-                            </div>
-                            <span class="skills__number">80%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">Linux</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 85%"></div>
-                            </div>
-                            <span class="skills__number">85%</span>
-                        </div>
+                <div class="about__cards">
+                    <div class="about__card">
+                        <div class="card__decoration"></div>
+                        <div class="card__number">1337</div>
+                        <p class="card__label">42 Network School</p>
+                    </div>
+
+                    <div class="about__card">
+                        <div class="card__decoration"></div>
+                        <div class="card__text">Peer Learning</div>
+                        <p class="card__label">Project-based education</p>
+                    </div>
+
+                    <div class="about__card">
+                        <div class="card__decoration"></div>
+                        <div class="card__text">Backend</div>
+                        <p class="card__label">System Architecture</p>
                     </div>
                 </div>
 
-                <div class="skills__group">
-                    <h3 class="skills__group-title">
-                        <i class="fab fa-docker skills__group-icon"></i>
-                        DevOps & Tools
-                    </h3>
-                    <div class="skills__list">
-                        <div class="skills__item">
-                            <span class="skills__name">Docker</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 85%"></div>
-                            </div>
-                            <span class="skills__number">85%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">Git</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 90%"></div>
-                            </div>
-                            <span class="skills__number">90%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">Nginx</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 75%"></div>
-                            </div>
-                            <span class="skills__number">75%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">Shell Scripting</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 80%"></div>
-                            </div>
-                            <span class="skills__number">80%</span>
-                        </div>
+                <div class="philosophy">
+                    <div class="philosophy__decoration">
+                        <div class="deco-line"></div>
+                        <div class="deco-dot"></div>
+                        <div class="deco-line"></div>
                     </div>
-                </div>
-
-                <div class="skills__group">
-                    <h3 class="skills__group-title">
-                        <i class="fas fa-database skills__group-icon"></i>
-                        Databases
-                    </h3>
-                    <div class="skills__list">
-                        <div class="skills__item">
-                            <span class="skills__name">MySQL</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 80%"></div>
-                            </div>
-                            <span class="skills__number">80%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">MongoDB</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 75%"></div>
-                            </div>
-                            <span class="skills__number">75%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">Redis</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 70%"></div>
-                            </div>
-                            <span class="skills__number">70%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skills__group">
-                    <h3 class="skills__group-title">
-                        <i class="fab fa-react skills__group-icon"></i>
-                        Web Technologies
-                    </h3>
-                    <div class="skills__list">
-                        <div class="skills__item">
-                            <span class="skills__name">Node.js</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 75%"></div>
-                            </div>
-                            <span class="skills__number">75%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">TypeScript</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 80%"></div>
-                            </div>
-                            <span class="skills__number">80%</span>
-                        </div>
-                        <div class="skills__item">
-                            <span class="skills__name">React</span>
-                            <div class="skills__bar">
-                                <div class="skills__percentage" style="width: 85%"></div>
-                            </div>
-                            <span class="skills__number">85%</span>
-                        </div>
-                    </div>
+                    <p class="philosophy__text">Clean code, elegant systems, continuous learning</p>
                 </div>
             </div>
         </div>
@@ -312,172 +161,210 @@
     <section class="projects section" id="projects">
         <div class="projects__container container">
             <div class="section__header">
-                <h2 class="section__title">Featured <span class="gradient-text">Projects</span></h2>
-                <div class="section__line"></div>
-                <p class="section__description">
-                    A showcase of my work from 1337 School and personal projects, 
-                    demonstrating proficiency in system programming, web development, and containerization.
-                </p>
+                <div class="section__line">
+                    <div class="line"></div>
+                    <span class="section__tag">Projects</span>
+                    <div class="line"></div>
+                </div>
+                <p class="section__subtitle">Each project, a step toward perfection</p>
             </div>
 
-            <div class="projects__content grid">
+            <div class="projects__list">
                 <!-- Project 1: Inception -->
                 <article class="project__card">
-                    <div class="project__image">
-                        <div class="project__icons">
-                            <i class="fab fa-docker"></i>
-                            <i class="fas fa-server"></i>
+                    <div class="project__corners">
+                        <span class="corner corner-tl"></span>
+                        <span class="corner corner-tr"></span>
+                        <span class="corner corner-bl"></span>
+                        <span class="corner corner-br"></span>
+                    </div>
+
+                    <div class="project__header">
+                        <p class="project__category">Docker Infrastructure</p>
+                        <div class="project__badge badge-solo">
+                            <div class="badge__dot"></div>
+                            <span>solo</span>
                         </div>
                     </div>
-                    <div class="project__content">
-                        <h3 class="project__title">Inception - Docker Infrastructure</h3>
-                        <p class="project__description">
-                            Complete containerized infrastructure setup using Docker Compose. Built a multi-service 
-                            environment with WordPress, MariaDB, and Nginx, all running in custom Docker containers.
-                        </p>
-                        <div class="project__features">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li>Custom Docker images from scratch</li>
-                                <li>Multi-container orchestration</li>
-                                <li>Secure networking configuration</li>
-                                <li>Volume persistence management</li>
-                            </ul>
-                        </div>
-                        <div class="project__tech">
-                            <span class="tech__tag">Docker</span>
-                            <span class="tech__tag">Docker Compose</span>
-                            <span class="tech__tag">Nginx</span>
-                            <span class="tech__tag">MariaDB</span>
-                            <span class="tech__tag">WordPress</span>
-                        </div>
-                        <div class="project__links">
-                            <a href="https://github.com/Xylar-99/inception" target="_blank" class="project__link">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
+
+                    <h3 class="project__title">Inception</h3>
+
+                    <p class="project__description">
+                        Complete containerized infrastructure using Docker Compose. A perfect orchestration 
+                        of services, like pieces on a chessboard, each serving its purpose with precision.
+                    </p>
+
+                    <div class="project__tech">
+                        <span class="tech__tag">Docker</span>
+                        <span class="tech__tag">Docker Compose</span>
+                        <span class="tech__tag">Nginx</span>
+                        <span class="tech__tag">MariaDB</span>
+                        <span class="tech__tag">WordPress</span>
+                        <span class="tech__tag">Linux</span>
+                    </div>
+
+                    <div class="project__links">
+                        <a href="https://github.com/Xylar-99/inception" target="_blank" class="project__link">
+                            <i class="fab fa-github"></i>
+                            <span>View Code</span>
+                            <div class="link__underline"></div>
+                        </a>
                     </div>
                 </article>
 
-                <!-- Project 2: Web Server -->
+                <!-- Project 2: OneServe -->
                 <article class="project__card">
-                    <div class="project__image">
-                        <div class="project__icons">
-                            <i class="fab fa-cuttlefish"></i>
-                            <i class="fas fa-server"></i>
+                    <div class="project__corners">
+                        <span class="corner corner-tl"></span>
+                        <span class="corner corner-tr"></span>
+                        <span class="corner corner-bl"></span>
+                        <span class="corner corner-br"></span>
+                    </div>
+
+                    <div class="project__header">
+                        <p class="project__category">Custom HTTP/1.1 Server</p>
+                        <div class="project__badge badge-group">
+                            <div class="badge__dot"></div>
+                            <span>group</span>
                         </div>
                     </div>
-                    <div class="project__content">
-                        <h3 class="project__title">C++ Web Server</h3>
-                        <p class="project__description">
-                            High-performance HTTP web server built from scratch in C++. Implements HTTP/1.1 protocol 
-                            with support for multiple simultaneous connections, file serving, and CGI execution.
-                        </p>
-                        <div class="project__features">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li>Built from scratch in C++</li>
-                                <li>HTTP/1.1 protocol implementation</li>
-                                <li>Multi-client handling with epoll</li>
-                                <li>CGI script execution support</li>
-                            </ul>
-                        </div>
-                        <div class="project__tech">
-                            <span class="tech__tag">C++</span>
-                            <span class="tech__tag">HTTP</span>
-                            <span class="tech__tag">TCP/IP</span>
-                            <span class="tech__tag">Socket Programming</span>
-                            <span class="tech__tag">CGI</span>
-                        </div>
-                        <div class="project__links">
-                            <a href="https://github.com/Xylar-99/webserver" target="_blank" class="project__link">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
+
+                    <h3 class="project__title">OneServe</h3>
+
+                    <p class="project__description">
+                        A high-performance web server built from the ground up in C++. Every line of code 
+                        crafted with the precision of a master swordsman, implementing epoll-based event systems 
+                        and configuration parsing.
+                    </p>
+
+                    <div class="project__tech">
+                        <span class="tech__tag">C++</span>
+                        <span class="tech__tag">HTTP/1.1</span>
+                        <span class="tech__tag">Epoll</span>
+                        <span class="tech__tag">Socket Programming</span>
+                        <span class="tech__tag">Linux</span>
+                    </div>
+
+                    <div class="project__links">
+                        <a href="https://github.com/Xylar-99/OneServe__A-Custom-HTTP-1.1-Server" target="_blank" class="project__link">
+                            <i class="fab fa-github"></i>
+                            <span>View Code</span>
+                            <div class="link__underline"></div>
+                        </a>
                     </div>
                 </article>
 
                 <!-- Project 3: ft_transcendence -->
                 <article class="project__card">
-                    <div class="project__image">
-                        <div class="project__icons">
-                            <i class="fas fa-gamepad"></i>
-                            <i class="fas fa-users"></i>
-                        </div>
+                    <div class="project__corners">
+                        <span class="corner corner-tl"></span>
+                        <span class="corner corner-tr"></span>
+                        <span class="corner corner-bl"></span>
+                        <span class="corner corner-br"></span>
                     </div>
-                    <div class="project__content">
-                        <h3 class="project__title">ft_transcendence - Ping Pong Platform</h3>
-                        <p class="project__description">
-                            Full-stack web application featuring real-time ping pong gameplay with user management, 
-                            tournaments, and live chat. Built with modern web technologies.
-                        </p>
-                        <div class="project__features">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li>Real-time multiplayer gameplay</li>
-                                <li>User authentication system</li>
-                                <li>Tournament management</li>
-                                <li>Live chat functionality</li>
-                            </ul>
-                        </div>
-                        <div class="project__tech">
-                            <span class="tech__tag">TypeScript</span>
-                            <span class="tech__tag">React</span>
-                            <span class="tech__tag">Node.js</span>
-                            <span class="tech__tag">Socket.IO</span>
-                            <span class="tech__tag">MongoDB</span>
-                        </div>
-                        <div class="project__links">
-                            <a href="https://github.com/Xylar-99/ft_transcendence" target="_blank" class="project__link">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </article>
 
-                <!-- Project 4: Other Projects -->
-                <article class="project__card">
-                    <div class="project__image">
-                        <div class="project__icons">
-                            <i class="fab fa-cuttlefish"></i>
-                            <i class="fas fa-terminal"></i>
+                    <div class="project__header">
+                        <p class="project__category">Full-Stack Platform</p>
+                        <div class="project__badge badge-group">
+                            <div class="badge__dot"></div>
+                            <span>group</span>
                         </div>
                     </div>
-                    <div class="project__content">
-                        <h3 class="project__title">1337 School Projects</h3>
-                        <p class="project__description">
-                            Collection of system programming projects including shell implementation, 
-                            STL containers recreation, and concurrent programming solutions.
-                        </p>
-                        <div class="project__features">
-                            <h4>Projects Include:</h4>
-                            <ul>
-                                <li>Minishell - Unix shell implementation</li>
-                                <li>ft_containers - C++ STL containers</li>
-                                <li>Philosophers - Dining problem solution</li>
-                                <li>Various algorithm implementations</li>
-                            </ul>
-                        </div>
-                        <div class="project__tech">
-                            <span class="tech__tag">C</span>
-                            <span class="tech__tag">C++</span>
-                            <span class="tech__tag">Threads</span>
-                            <span class="tech__tag">Templates</span>
-                            <span class="tech__tag">Algorithms</span>
-                        </div>
-                        <div class="project__links">
-                            <a href="https://github.com/Xylar-99" target="_blank" class="project__link">
-                                <i class="fab fa-github"></i> View All
-                            </a>
-                        </div>
+
+                    <h3 class="project__title">ft_transcendence</h3>
+
+                    <p class="project__description">
+                        A complete microservices architecture demonstrating the art of system design. 
+                        Authentication, user management, and real-time communication working in perfect harmony.
+                    </p>
+
+                    <div class="project__tech">
+                        <span class="tech__tag">TypeScript</span>
+                        <span class="tech__tag">Node.js</span>
+                        <span class="tech__tag">Microservices</span>
+                        <span class="tech__tag">WebSocket</span>
+                        <span class="tech__tag">OAuth</span>
+                    </div>
+
+                    <div class="project__links">
+                        <a href="https://github.com/Xylar-99/user-management-system" target="_blank" class="project__link">
+                            <i class="fab fa-github"></i>
+                            <span>View Code</span>
+                            <div class="link__underline"></div>
+                        </a>
                     </div>
                 </article>
             </div>
 
             <div class="projects__footer">
-                <a href="https://github.com/Xylar-99" target="_blank" class="button button--primary">
-                    <i class="fab fa-github"></i> View All Projects on GitHub
-                </a>
+                <div class="footer__line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills section" id="skills">
+        <div class="skills__container container">
+            <div class="section__header">
+                <div class="section__line">
+                    <div class="line"></div>
+                    <span class="section__tag">Skills</span>
+                    <div class="line"></div>
+                </div>
+            </div>
+
+            <div class="skills__grid">
+                <div class="skill__item">
+                    <div class="skill__icon">
+                        <i class="fab fa-cuttlefish"></i>
+                    </div>
+                    <div class="skill__info">
+                        <span class="skill__name">C/C++</span>
+                        <div class="skill__bar">
+                            <div class="skill__progress" style="width: 56%"></div>
+                        </div>
+                        <span class="skill__level">56%</span>
+                    </div>
+                </div>
+
+                <div class="skill__item">
+                    <div class="skill__icon">
+                        <i class="fab fa-docker"></i>
+                    </div>
+                    <div class="skill__info">
+                        <span class="skill__name">Docker</span>
+                        <div class="skill__bar">
+                            <div class="skill__progress" style="width: 70%"></div>
+                        </div>
+                        <span class="skill__level">70%</span>
+                    </div>
+                </div>
+
+                <div class="skill__item">
+                    <div class="skill__icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="skill__info">
+                        <span class="skill__name">Backend</span>
+                        <div class="skill__bar">
+                            <div class="skill__progress" style="width: 68%"></div>
+                        </div>
+                        <span class="skill__level">68%</span>
+                    </div>
+                </div>
+
+                <div class="skill__item">
+                    <div class="skill__icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <div class="skill__info">
+                        <span class="skill__name">Web Server</span>
+                        <div class="skill__bar">
+                            <div class="skill__progress" style="width: 65%"></div>
+                        </div>
+                        <span class="skill__level">65%</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -486,86 +373,103 @@
     <section class="contact section" id="contact">
         <div class="contact__container container">
             <div class="section__header">
-                <h2 class="section__title">Get In <span class="gradient-text">Touch</span></h2>
-                <div class="section__line"></div>
-                <p class="section__description">
-                    I'm always interested in new opportunities and exciting projects. 
-                    Whether you have a question or just want to say hi, feel free to reach out!
-                </p>
+                <div class="section__line">
+                    <div class="line"></div>
+                    <span class="section__tag">Contact</span>
+                    <div class="line"></div>
+                </div>
+                <p class="section__subtitle">Let's build something extraordinary together</p>
             </div>
 
-            <div class="contact__content grid">
+            <div class="contact__content">
                 <div class="contact__info">
-                    <h3 class="contact__title">Let's Connect</h3>
-                    <p class="contact__description">
-                        I'm currently looking for new opportunities in backend development, 
-                        system programming, or DevOps. I'm particularly interested in projects 
-                        involving C++, containerization, or distributed systems.
-                    </p>
+                    <div class="contact__border">
+                        <p class="contact__text">
+                            Whether it's crafting elegant backend systems, architecting scalable solutions, 
+                            or collaborating on ambitious projects—I am always open to new opportunities.
+                        </p>
+                    </div>
 
-                    <div class="contact__cards">
-                        <div class="contact__card">
-                            <i class="fas fa-envelope contact__card-icon"></i>
-                            <div>
-                                <h4 class="contact__card-title">Email</h4>
-                                <a href="mailto:abdelbassat.quaoubai@gmail.com" class="contact__card-data">
-                                    abdelbassat.quaoubai@gmail.com
+                    <div class="contact__methods">
+                        <div class="method__card">
+                            <div class="method__icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method__info">
+                                <p class="method__label">Email</p>
+                                <a href="mailto:abdelbassat.quaoubai99@gmail.com" class="method__link">
+                                    abdelbassat.quaoubai99@gmail.com
                                 </a>
                             </div>
                         </div>
 
-                        <div class="contact__card">
-                            <i class="fab fa-linkedin contact__card-icon"></i>
-                            <div>
-                                <h4 class="contact__card-title">LinkedIn</h4>
-                                <a href="https://linkedin.com/in/abdelbassat-quaoubai" target="_blank" class="contact__card-data">
-                                    linkedin.com/in/abdelbassat-quaoubai
-                                </a>
+                        <div class="method__card">
+                            <div class="method__icon">
+                                <i class="fab fa-github"></i>
                             </div>
-                        </div>
-
-                        <div class="contact__card">
-                            <i class="fab fa-github contact__card-icon"></i>
-                            <div>
-                                <h4 class="contact__card-title">GitHub</h4>
-                                <a href="https://github.com/Xylar-99" target="_blank" class="contact__card-data">
+                            <div class="method__info">
+                                <p class="method__label">GitHub</p>
+                                <a href="https://github.com/Xylar-99" target="_blank" class="method__link">
                                     github.com/Xylar-99
                                 </a>
                             </div>
                         </div>
 
-                        <div class="contact__card">
-                            <i class="fas fa-map-marker-alt contact__card-icon"></i>
-                            <div>
-                                <h4 class="contact__card-title">Location</h4>
-                                <span class="contact__card-data">Morocco</span>
+                        <div class="method__card">
+                            <div class="method__icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="method__info">
+                                <p class="method__label">LinkedIn</p>
+                                <a href="https://linkedin.com/in/abdelbassat-quaoubai" target="_blank" class="method__link">
+                                    Connect with me
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="method__card">
+                            <div class="method__icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="method__info">
+                                <p class="method__label">Location</p>
+                                <span class="method__text">Morocco</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <form class="contact__form" id="contact-form">
-                    <h3 class="contact__title">Send a Message</h3>
-                    
-                    <div class="contact__form-group">
-                        <label for="name" class="contact__form-label">Your Name</label>
-                        <input type="text" id="name" name="name" class="contact__form-input" placeholder="John Doe" required>
+                    <h3 class="form__title">Send a Message</h3>
+
+                    <div class="form__group">
+                        <label for="name" class="form__label">Your Name</label>
+                        <input type="text" id="name" name="name" class="form__input" placeholder="John Doe" required>
                     </div>
 
-                    <div class="contact__form-group">
-                        <label for="email" class="contact__form-label">Email Address</label>
-                        <input type="email" id="email" name="email" class="contact__form-input" placeholder="john@example.com" required>
+                    <div class="form__group">
+                        <label for="email" class="form__label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form__input" placeholder="john@example.com" required>
                     </div>
 
-                    <div class="contact__form-group">
-                        <label for="message" class="contact__form-label">Message</label>
-                        <textarea id="message" name="message" class="contact__form-input contact__form-area" placeholder="Your message here..." rows="6" required></textarea>
+                    <div class="form__group">
+                        <label for="message" class="form__label">Message</label>
+                        <textarea id="message" name="message" class="form__input form__textarea" placeholder="Your message here..." rows="6" required></textarea>
                     </div>
 
-                    <button type="submit" class="button button--primary contact__button">
-                        <i class="fas fa-paper-plane"></i> Send Message
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <span class="btn__text">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </span>
+                        <div class="btn__overlay"></div>
                     </button>
                 </form>
+            </div>
+
+            <div class="contact__quote">
+                <div class="quote__line"></div>
+                <p class="quote__text">"Admiration is the emotion furthest from understanding."</p>
+                <p class="quote__author">— Sōsuke Aizen</p>
             </div>
         </div>
     </section>
@@ -573,35 +477,36 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer__container container">
-            <div class="footer__content grid">
+            <div class="footer__content">
                 <div class="footer__info">
-                    <a href="#home" class="footer__logo">&lt;AQ /&gt;</a>
+                    <a href="#home" class="footer__logo">
+                        <span class="bracket">&lt;</span>AQ<span class="bracket">/&gt;</span>
+                    </a>
                     <p class="footer__description">
-                        Backend Developer & 1337 Student passionate about creating 
-                        efficient and scalable solutions.
+                        Backend Developer & 1337 Student passionate about creating efficient and scalable solutions.
                     </p>
                 </div>
 
                 <div class="footer__links">
-                    <h3 class="footer__title">Quick Links</h3>
+                    <h4 class="footer__title">Quick Links</h4>
                     <ul class="footer__list">
                         <li><a href="#about" class="footer__link">About</a></li>
-                        <li><a href="#skills" class="footer__link">Skills</a></li>
                         <li><a href="#projects" class="footer__link">Projects</a></li>
+                        <li><a href="#skills" class="footer__link">Skills</a></li>
                         <li><a href="#contact" class="footer__link">Contact</a></li>
                     </ul>
                 </div>
 
-                <div class="footer__social">
-                    <h3 class="footer__title">Follow Me</h3>
-                    <div class="footer__social-links">
+                <div class="footer__social-section">
+                    <h4 class="footer__title">Follow Me</h4>
+                    <div class="footer__social">
                         <a href="https://github.com/Xylar-99" target="_blank" class="footer__social-link">
                             <i class="fab fa-github"></i>
                         </a>
                         <a href="https://linkedin.com/in/abdelbassat-quaoubai" target="_blank" class="footer__social-link">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="mailto:abdelbassat.quaoubai@gmail.com" class="footer__social-link">
+                        <a href="mailto:abdelbassat.quaoubai99@gmail.com" class="footer__social-link">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </div>
@@ -614,9 +519,9 @@
         </div>
     </footer>
 
-    <!-- Scroll Up Button -->
+    <!-- Scroll Up -->
     <a href="#" class="scrollup" id="scroll-up">
-        <i class="fas fa-arrow-up scrollup__icon"></i>
+        <i class="fas fa-arrow-up"></i>
     </a>
 
     <script src="script.js"></script>
