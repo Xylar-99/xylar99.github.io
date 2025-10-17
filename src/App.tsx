@@ -6,6 +6,8 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import './index.css';
 
+
+
 const App: React.FC = () => {
   return (
     <div className="app">
