@@ -22,7 +22,7 @@ const projects = [
     technologies: ['Docker', 'Docker Compose', 'Nginx', 'MariaDB', 'WordPress', 'Redis', 'PHP'],
     github: 'https://github.com/Xylar-99/INCEPTION',
     type: 'solo' as const,
-    image: 'https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&q=80',
+    image: '/images/docker.png'
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const projects = [
     technologies: ['C++', 'HTTP/1.1', 'Epoll', 'Socket Programming', 'Linux'],
     github: 'https://github.com/Xylar-99/OneServe__A-Custom-HTTP-1.1-Server',
     type: 'group' as const,
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+    image: '/images/webserv.png'
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const projects = [
     technologies: ['TypeScript', 'Node.js', 'Fastify', 'REST API', 'SQLite', 'JWT'],
     github: 'https://github.com/Xylar-99/user-management-system',
     type: 'group' as const,
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
+    image: '/images/pingpong.png'
   },
 ];
 
